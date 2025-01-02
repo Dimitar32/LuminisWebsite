@@ -1,0 +1,88 @@
+.not-avaliable {
+    background-color: #f0f8ff; /* Светло син фон за приятен контраст */
+    color: #333; /* Тъмен текст за по-добра четимост */
+    padding: 20px;
+    padding-top: 80px; /* Регулирай според височината на header-а */
+    margin: 20px 0; /* Отстояние от другите секции */
+    border-radius: 8px; 
+    margin-top: 10%;
+    margin-bottom: 16.5%;
+}
+
+    .not-avaliable h2 {
+        font-family: 'Roboto Slab';
+        color: #f77fbe; /* Син цвят за заглавието */
+        margin-bottom: 15px; /* Отстояние под заглавието */
+        font-size: 28px; /* Задава размер на шрифта */
+    }
+
+    .not-avaliable p {
+        font-family: 'Lobster';
+        font-size: 18px; /* Малко по-голям шрифт за по-изчистен вид */
+        line-height: 1.8; /* По-голямо междуредие за по-лесна четимост */
+        color: #333; /* По-тъмен нюанс за по-добър контраст с фона */
+        text-align: center; /* Изравнява текста от двете страни за по-професионален вид */
+        background-color: rgba(255, 255, 255, 0.7); /* Лек фон за подчертаване на параграфа */
+        padding: 15px; /* Добавя вътрешни отстояния около текста */
+        border-left: 5px solid #f77fbe; /* Цветен ляв бордюр за акцент */
+        border-right: 5px solid #f77fbe; /* Цветен ляв бордюр за акцент */
+        border-radius: 5px; /* Закръгляне на ъглите за по-мек вид */
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); /* Лека сянка за дълбочина */
+        transition: transform 0.3s ease-in-out; /* Анимация при взаимодействие */
+    }
+
+        .not-avaliable p:hover {
+            background-color: #f77fbe; /* Промяна на фона на по-наситен цвят */
+            color: white; /* Промяна на текста на по-тъмен нюанс */
+            transform: translateX(10px); /* Леко преместване надясно при hover */
+        }
+
+@media (max-width: 1200px) {
+
+    .not-avaliable p {
+        font-size: 17px;
+    }
+
+    .not-avaliable h2 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 992px) {
+    .not-avaliable p {
+        font-size: 15px;
+    }
+
+    .not-avaliable h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .not-avaliable p {
+        font-size: 13px;
+    }
+
+    .not-avaliable h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .not-avaliable{
+        padding:1px;
+        padding-top: 80px;
+    }
+
+    .not-avaliable p:hover {
+        transform: translateX(3px);
+    }
+
+    .not-avaliable p {
+        font-size: 16px;
+    }
+
+    .not-avaliable h2 {
+        font-size: 20px;
+    }
+}

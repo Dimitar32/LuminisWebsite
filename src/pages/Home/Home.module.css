@@ -1,0 +1,96 @@
+/* Styles for the home page */
+.homeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background: url('./luminis\ background4.png') no-repeat center center/cover;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Content and text styles */
+  .content {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .actionButton {
+    background-color: #1B1F3B;
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .actionButton:hover {
+    background-color: white;
+    color: #1B1F3B;
+  }
+  
+  .tagline {
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+  
+@media (max-width: 1200px) {
+
+    .general-info p {
+        font-size: 17px;
+    }
+
+    .general-info h2 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 992px) {
+    .general-info p {
+        font-size: 15px;
+    }
+
+    .general-info h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .general-info p {
+        font-size: 13px;
+    }
+
+    .general-info h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .general-info{
+        padding:1px;
+        padding-top: 80px;
+    }
+
+    .general-info p:hover {
+        transform: translateX(3px);
+    }
+
+    .general-info p {
+        font-size: 16px;
+    }
+
+    .general-info h2 {
+        font-size: 20px;
+    }
+}

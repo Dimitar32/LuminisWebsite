@@ -1,0 +1,57 @@
+.delivery-section{
+    margin-top: 8%;
+    margin-bottom: 11%;
+}
+
+.delivery-section p{
+    font-size: 17px; 
+    text-align: left; /* Подравняване на целия текст наляво */
+    padding-left: 20%; 
+}
+
+.delivery-info {
+    text-align: left; /* Подравняване на целия текст наляво */
+    font-size: 17px; 
+  }
+  
+  .delivery-info p {
+    margin: 0; /* Няма разстояние между параграфите */
+    line-height: 1.6; /* Контролира височината на редовете за по-добра четимост */
+  }
+  
+  .delivery-info ul {
+    padding-left: 20%; /* Отстояние на целия списък навътре */
+    padding-right: 15%;
+    margin: 10px 0; /* Отстояние между списъка и другите елементи */
+  }
+  
+  .delivery-info li {
+    margin-left: 5%;
+    /* margin-right: 15%; */
+    margin-bottom: 8px; /* Разстояние между елементите на списъка */
+  }
+  
+  @media (max-width: 600px) {
+    .delivery-section{
+        margin-top: 28%;
+        margin-bottom: 26%;
+    }
+    
+    .delivery-section p{
+        padding-left: 1%; 
+        font-size: 14px; 
+    }
+
+    .delivery-info {
+      font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
+      padding: 10px; /* Допълнително отстояние около съдържанието */
+    }
+  
+    .delivery-info ul {
+      padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
+    }
+  
+    .delivery-info li {
+      margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
+    }
+  }

@@ -1,0 +1,113 @@
+.header {
+    display: flex; /* Използване на flexbox за подреждане */
+    justify-content: space-between;
+    align-items: center; /* Центрира елементите вертикално */
+    background-color: #1B1F3B;
+    color: black; /* Бял текст */
+    padding: 10px 20px; /* Отстояние отгоре и отдолу, повече отстрани */
+    width: 100%; /* Заема цялата ширина на вида */
+    box-sizing: border-box; /* Включва падинг и рамка в широчината */
+    position: relative; /* Нужно за абсолютно позиционирани елементи вътре */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+    .header h1 {
+        margin: 15px; /* Премахва маржините на заглавието */
+        font-size: 35px; /* Задава размер на шрифта на заглавието */
+        font-family: "Permanent Marker", cursive;
+        font-weight: 800;
+        font-style: normal;
+    }
+    
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding-left: 80px;
+}
+
+.logo-image {
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+}
+
+nav {
+    font-family: 'Lobster';
+    display: flex; /* Flexbox for navigation links */
+    justify-content: center; /* Center the navigation links */
+    flex-grow: 1; /* Allow nav to expand and center properly */
+    padding-right: 160px;
+}
+
+    nav a {
+        color: black; /* Бял текст за линковете */
+        text-decoration: none; /* Премахва подчертаването */
+        margin-left: 20px; /* Отстояние между линковете */
+        font-weight: bold; /* По-дебел шрифт за линковете */
+        font-size: 17px; /* Намалява размера на шрифта на заглавието на малки екрани */
+    }
+
+        nav a:hover {
+            background-color: white;
+            color: #1B1F3B;
+            text-decoration: none; 
+}
+
+.logo {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Set text color to white */
+}
+
+.logo h1 {
+    margin: 15px; /* Премахва маржините на заглавието */
+    font-size: 35px; /* Задава размер на шрифта на заглавието */
+    font-family: "Permanent Marker", cursive;
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* Медийни заявки */
+@media (max-width: 992px) {
+    .header {
+        flex-direction: column; /* Стакира лого и навигацията вертикално на малки екрани */
+        padding: 10px;
+    }
+
+    nav {
+        width: 100%; /* Позволява на навигацията да заеме цялата ширина */
+        justify-content: center; /* Центрира линковете */
+        margin-top: 10px; /* Добавя малко пространство между лого и навигацията */
+    }
+
+        nav a {
+            margin-left: 10px; /* Намалява отстоянието между линковете */
+            margin-right: 10px; /* Добавя отстояние отдясно на всеки линк */
+            font-size: 14px; /* Намалява размера на шрифта на заглавието на малки екрани */
+        }
+
+    .header h1 {
+        margin-bottom: 10px; /* Добавя маржин отдолу на заглавието за разделение */
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px; /* Намалява размера на шрифта на заглавието на малки екрани */
+    }
+
+    .logo {
+        padding-left: 0px;
+    }
+    
+    nav{
+        padding-right: 0px;
+    }
+
+    nav a {
+        font-size: 14px; /* Намалява размера на шрифта на заглавието на малки екрани */
+    }
+
+}

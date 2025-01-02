@@ -1,0 +1,83 @@
+.footer {
+    background-color: #1B1F3B; /* Основен син цвят */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%; /* Заема цялата ширина на вида */
+    box-sizing: border-box; /* Включва падинг и рамка в широчината */
+    position: flex;
+    bottom: 0;
+}
+
+.link{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: none; /* Премахва подчертаването */
+}
+
+    .link:hover{
+        text-decoration: underline;
+    }
+
+.link-privacy{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: none; /* Премахва подчертаването */
+
+}
+
+    .link-privacy:hover{
+        text-decoration: underline;
+    }
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px; /* Подходящ размер на шрифта за социални връзки */
+}
+
+    .social-links a:hover {
+        color:white;
+        text-decoration: underline; /* Подчертаване при ховър */
+    }
+
+.fixed-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+    
+/* Медийни заявки за футъра */
+@media (max-width: 768px) {
+    .footer {
+        padding: 10px; /* Намалява падинга на по-малки устройства */
+    }
+
+    .social-links a {
+        font-size: 14px; /* Намалява размера на шрифта на социалните връзки */
+        margin: 0 5px; /* Намалява разстоянието между социалните връзки */
+    }
+    
+    .link{
+        text-decoration: underline;
+    }
+
+    .link-privacy{
+        text-decoration: underline;
+    }
+
+}
+
+@media (max-width: 600px) {
+    /*.social-links {
+        display: block;*/ /* Променя разположението на блок за по-добър визуален ред */
+    /*}*/
+
+        /*.social-links a {
+            display: inline-block;*/ /* Позволява по-добро управление на стиловете */
+            /*width: 100%;*/ /* Заема цялата налична ширина */
+            /*margin: 10px 0;*/ /* Увеличава вертикалните маржини за разделение */
+            /*font-size: 12px;*/ /* Още по-малък шрифт за много малки устройства */
+        /*}*/
+}

@@ -1,0 +1,155 @@
+/* Бутон за отваряне на количката */
+.cart-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #1B1F3B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.cart-toggle-button:hover {
+    background-color: white;
+    color: #1B1F3B;
+}
+
+/* Плъзгащият се прозорец за количката (sidebar) */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+    padding: 20px;
+    overflow-y: auto;
+    padding-top: 10%;
+}
+
+/* Количката е напълно видима, когато е отворена */
+.cart-sidebar.open {
+    transform: translateX(0);
+}
+
+/* Количката е скрита частично (само стрелката се вижда), когато е затворена */
+.cart-sidebar.closed {
+    transform: translateX(260px); /* Плъзга количката частично извън екрана */
+    width: 40px;
+    overflow: hidden; /* Скриваме съдържанието */
+}
+
+/* Стил за заглавието на количката и бутон за затваряне */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.close-cart {
+    background: none; /* No background */
+    border: none; /* No border */
+    font-size: 23px; /* Font size */
+    cursor: pointer; /* Pointer cursor for clickability */
+    color: #333; /* Default text color */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.close-cart:hover {
+    color: #ff5e5e; /* Change color on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.close-cart:focus {
+    outline: none; /* Remove default outline */
+    color: #d63031; /* Change color on focus */
+}
+
+.close-cart:active {
+    transform: scale(0.95); /* Shrink slightly on click */
+    color: #c0392b; /* Change color when active (clicked) */
+}
+
+/* Съдържание на количката */
+.cart-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-content ul li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Бутон за завършване на поръчката */
+.checkout-button {
+    width: 100%;
+    padding: 15px;
+    /* background-color: #28a745; */
+    color: white;
+    background-color: #f77fbe;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.checkout-button:hover {
+    /* background-color: #218838; */
+    background-color: #e91e63;
+}
+
+/* Оверлей за затъмняване на страницата */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.remove-item-from-cart{
+    background-color: #f5f5f5; /* Light gray background */
+    color: #333; /* Dark gray text color */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Spacing inside the button */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.remove-item-from-cart:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+    color: #000; /* Darker text color on hover */
+  }
+  
+  .remove-item-from-cart:active {
+    background-color: #d6d6d6; /* Even darker gray when clicked */
+    border-color: #999; /* Change border color when clicked */
+  }
+
+/* Mobile-friendly медийни заявки */
+@media (max-width: 768px) {
+    
+    .cart-sidebar {
+        padding-top: 28%;
+    }
+
+}

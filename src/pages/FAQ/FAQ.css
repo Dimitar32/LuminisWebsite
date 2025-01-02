@@ -1,0 +1,106 @@
+.faq-section {
+    padding: 20px;
+    width: 100%;
+    scroll-margin-top: 80px;
+    padding-top: 100px; /* Регулирай според височината на header-а */
+}
+
+.faq-item {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    margin: 5px;
+    text-align: center;
+    transition: transform 0.5s ease-in-out, text-shadow 0.3s ease-in-out;
+    font-family: 'Lobster';
+}
+
+    .faq-question:focus {
+        border: none;
+        outline: none;
+    }
+
+    .faq-question:hover {
+        color: #f77fbe;
+        text-decoration: underline;
+        color: #ff4088;
+        transform: scale(1.1);
+    }
+
+.faq-answer {
+    display: none;
+    padding: 10px;
+    margin: 5px 0 10px;
+    margin: 5px;
+    text-align: center;
+    font-family: 'Lobster';
+}
+
+    .faq-answer.active {
+        display: block;
+    }
+
+        .faq-answer.active:hover {
+            display: block;
+            max-height: 500px;
+            opacity: 1;
+            background-color: #f77fbe;
+            color: white;
+        }
+        
+.link-faq{
+    color: inherit; /* Наследява цвета на родителя или го променете на желания */
+    text-decoration: underline; /* Премахва подчертаването */
+}
+
+h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    text-align: center;
+    background: linear-gradient(90deg, #f77fbe, #f77fbe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 20px 0;
+    letter-spacing: 1.5px;
+    transition: transform 0.5s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+    h2:hover {
+        transform: scale(1.1);
+        text-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+
+h3, p {
+    margin: 5px;
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .faq-question {
+        font-size: 16px;
+    }
+
+    .faq-section h2 {
+        font-size: 20px;
+    }
+
+    h3, p {
+        font-size: 16px;
+    }
+
+}
