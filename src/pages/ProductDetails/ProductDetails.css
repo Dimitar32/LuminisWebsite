@@ -197,7 +197,7 @@ p{
     .order-form-container h2 {
         font-family: 'Roboto Slab';
         text-align: center;
-        color: #f77fbe;
+        color: #1B1F3B;
         margin-bottom: 20px;
         font-size: 41px; /* Задава размер на шрифта */
     }
@@ -207,7 +207,7 @@ form {
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
-    background-color: #f77fbe; /* White form background */
+    background-color: #1B1F3B; /* White form background */
     padding: 30px 40px; /* Added padding for better spacing */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger box shadow */
@@ -244,7 +244,7 @@ form {
     width: 100%;
     padding: 10px;
     background-color: white;
-    color: #f77fbe;
+    color: #1B1F3B;
     border: none;
     border-radius: 5px;
     font-size: 1.2rem;

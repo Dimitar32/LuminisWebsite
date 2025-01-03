@@ -26,7 +26,7 @@
 
 .product-card {
     width: 100%; /* Позволява на картата да се адаптира към родителския контейнер */
-    max-width: 350px;
+    max-width: 450px;
     height: auto;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -74,6 +74,8 @@
     font-size: 18px;
     color: #f77fbe;
     font-weight: bold;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 h3, p {
@@ -100,7 +102,6 @@ h3, p {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Lobster';
-    /* margin-left: 10%; */
     max-width: 200px;
 }
 
