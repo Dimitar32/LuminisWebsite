@@ -4,7 +4,7 @@
     align-items: center; /* Центрира елементите вертикално */
     background-color: #1B1F3B;
     color: black; /* Бял текст */
-    padding: 10px 20px; /* Отстояние отгоре и отдолу, повече отстрани */
+    padding: 10px 20px; 
     width: 100%; /* Заема цялата ширина на вида */
     box-sizing: border-box; /* Включва падинг и рамка в широчината */
     position: relative; /* Нужно за абсолютно позиционирани елементи вътре */

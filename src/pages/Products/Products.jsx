@@ -1,19 +1,21 @@
 import {/*useState,*/ React} from 'react';
 import { Link } from 'react-router-dom'; // Импортираме Link от react-router-dom
 import './Products.css';
-import Ariel from './Ariel.png';
-import Rapunzel from './Rapunzel.png';
-import LionKing from './LionKing.png';
-import McQueen from './McQueen1.jpg';
+import Saturn from '../Products/luminis saturn.png';
+import Heart from '../Products/luminis heart.png';
+import MilkyWay from '../Products/luminis milky way.png';
+import Earth from '../Products/luminis earth.png';
 
 const products = [
-    { id: 1, name: 'Ерик и Ариел', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Ariel },
-    { id: 4, name: 'Нала и Симба', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: LionKing },
-    { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel }
+    { id: 1, name: 'Luminis Cosmos', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Saturn },
+    { id: 2, name: 'Luminis Cosmos', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: MilkyWay },
+    { id: 3, name: 'Luminis Cosmos', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Earth },
+    { id: 4, name: 'Luminis Heart', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Heart }
+    // { id: 3, name: 'Рапунцел и Флин', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Rapunzel }
 ];
 
 const blurProducts = [
-    { id: 8, name: 'Макуин и Сали', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: McQueen }
+    // { id: 8, name: 'Макуин и Сали', oldPrice: '??.?? лв', price: 'Изчерпано', imageUrl: McQueen }
 ];
 
 const Products = () => {

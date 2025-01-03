@@ -52,7 +52,10 @@ p{
     font-size: 24px;
     color: #e91e63;
     margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
+
 .product-buttons {
     display: flex;
     flex-direction: column;
@@ -436,7 +439,7 @@ form {
 .description-toggle {
     font-size: 18px;
     font-weight: bold;
-    color: #f77fbe;
+    color: #1B1F3B;
     cursor: pointer;
     margin-bottom: 10px;
     display: flex;

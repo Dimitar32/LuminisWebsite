@@ -9,7 +9,8 @@ body, html {
 }
 
 .App {
-    background-color: #f0f8ff; /* Светло синьо, което е меко и приятно за очите */
+    background-color: black; /* Светло синьо, което е меко и приятно за очите */
+    background: url('./pages/Home/luminis\ background4.png') no-repeat center center/cover;
     color: #333; /* Тъмен сив цвят за текст, който се откроява добре на светлия фон */
     min-height: 100vh; /* Подсигурява, че приложението покрива цялата височина на вида */
     padding: 0px; /* Отстояние от всички страни */

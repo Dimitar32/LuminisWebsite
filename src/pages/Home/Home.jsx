@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "../Home/Home.module.css";
 
 const Home = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   const handleNavigate = () => {
-    navigate("/products"); // Navigate to the /products page
+    navigate("/products"); 
   };
 
   return (

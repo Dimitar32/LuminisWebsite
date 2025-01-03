@@ -35,6 +35,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Lobster';
+    /* background-color: #1B1F3B; */
 }
 
     .product-card:hover {
@@ -72,13 +73,14 @@
 
 .new-price {
     font-size: 18px;
-    color: #f77fbe;
+    color: white;
     font-weight: bold;
     margin-left: 0;
     margin-right: 0;
 }
 
 h3, p {
+    color:white;
     margin: 5px;
 }
 
