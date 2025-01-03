@@ -50,7 +50,7 @@ p{
 
 .product-price {
     font-size: 24px;
-    color: #e91e63;
+    color: white;
     margin-bottom: 20px;
     margin-left: 0px;
     margin-right: 0px;
@@ -71,7 +71,7 @@ p{
 }
 
 .order-button {
-    background-color: #f77fbe;
+    background-color: #b392ac;
     color: white;
     font-size: 18px;
     padding: 12px 20px;
@@ -85,7 +85,7 @@ p{
 }
 
 .order-button:hover {
-    background-color: #e91e63;
+    color: #1B1F3B;
 }
 
 .product-quantity-label {
@@ -291,7 +291,7 @@ form {
 
 .new-price {
     font-size: 18px;
-    color: #f77fbe;
+    color: white;
     font-weight: bold;
 }
    
@@ -439,7 +439,7 @@ form {
 .description-toggle {
     font-size: 18px;
     font-weight: bold;
-    color: #1B1F3B;
+    color: white;
     cursor: pointer;
     margin-bottom: 10px;
     display: flex;
@@ -455,7 +455,7 @@ form {
 .description-text {
     font-size: 16px;
     line-height: 1.5;
-    color: #555;
+    color: white;
     animation: fadeIn 0.3s ease-in-out;
     text-align: left;
 }

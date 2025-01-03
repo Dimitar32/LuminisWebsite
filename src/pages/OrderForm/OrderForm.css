@@ -17,10 +17,11 @@
     margin-bottom: 1%;
 }
 
-.order-form-container h2 {
+.order-form-container h3 {
     text-align: center;
     padding-top: 5px;
     font-size: x-large;
+    color:#1B1F3B;
     /* margin-bottom: 20px; */
 }
 
@@ -52,7 +53,6 @@
 .cart-items p {
     color: white;
     font-size: x-large;
-    /* font-weight: bolder; */
 }
 
 .cart-items ul {
@@ -84,8 +84,8 @@
 .submit-button {
     width: 100%;
     padding: 12px;
-    background-color: white;
-    color: #f77fbe;
+    background-color: #b392ac;
+    color: white;
     border: none;
     font-size: 16px;
     border-radius: 4px;
@@ -94,8 +94,8 @@
 }
 
 .submit-button:hover {
-    background-color: #ff4d4d;
-    color:white;
+    background-color: #b392ac;
+    color:#1B1F3B;
 }
 
 

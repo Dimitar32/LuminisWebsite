@@ -27,7 +27,7 @@ const Cart = () => {
 
             <div className={`cart-sidebar ${isOpen ? 'open' : 'closed'}`}>
                 <div className="cart-header">
-                    <h2>Вашата количка</h2>
+                    <h3>Вашата количка</h3>
                     <button className="close-cart" onClick={handleCartToggle}>
                         {isOpen ? 'x' : '←'}
                     </button>

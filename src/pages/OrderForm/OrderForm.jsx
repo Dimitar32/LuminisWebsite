@@ -100,7 +100,7 @@ const OrderForm = () => {
     return (
         // <div className='out-container'>
         <div className="order-form-container">
-        <h2>Завършете поръчката</h2>
+        <h3>Завършете поръчката</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Име</label>
