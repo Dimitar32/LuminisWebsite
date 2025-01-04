@@ -19,29 +19,6 @@ const blurProducts = [
 ];
 
 const Products = () => {
-    // const [isAdded, setIsAdded] = useState(false);
-
-    // const handleAddToCart = (product, quantity, value) => {
-    //     if (product.id === 7 && !value) {
-    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
-    //         return;
-    //     }
-
-    //     addToCart(product, quantity, value); 
-
-    //     if (quantity > 0) {
-    //         setIsAdded(true);
-    //     } else if (quantity === 0) {
-    //         cantAddZeroToCart(true);
-    //     }
-
-    //     setTimeout(() => {
-    //         cantAddZeroToCart(false);
-    //         setIsAdded(false);
-    //     }, 1500);
-    // };
-
-
     return (
         <section id="products" className="products-section">
             <h2 className="products-title">Нашите продукти</h2>
@@ -49,7 +26,7 @@ const Products = () => {
                 <Link to={`/product/${product.id}`} key={product.id} className="product-link">
                     <div key={product.id} className="product-card">
                         <img src={product.imageUrl} alt={product.name} className="product-image" />
-                        <div class="discount-label">
+                        <div className="discount-label">
                             <span>-28%</span>
                         </div>
                         <h3>{product.name}</h3>
@@ -69,16 +46,6 @@ const Products = () => {
                 </div>
                 </Link>
             ))}
-        
-        {/* {isAdded && (
-            <div className="modal">
-                <div className="modal-content">
-                    <p>
-                        Успешно добавено в количката!
-                    </p>
-                </div>
-            </div>
-        )} */}
         </section>
     );
 };
