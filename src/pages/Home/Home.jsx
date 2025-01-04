@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Докосни Вселената в ръцете си.</h1>
+        <h1 className={styles.title}>Докосни Вселената в ръцете си!</h1>
         <button className={styles.actionButton} onClick={handleNavigate}>Поръчай сега</button>
         <p className={styles.tagline}>Luminis – където изкуството среща звездите.</p>
         
