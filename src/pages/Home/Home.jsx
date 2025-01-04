@@ -23,32 +23,32 @@ const Home = () => {
 
         {/* Why LudoSphere Section - Now Positioned Below the Tagline */}
         <div className={styles.whyLudoSphere}>
-          <h2 className={styles.whyTitle}>Why LudoSphere?</h2>
-          <p className={styles.whySubtitle}>We aren't just any Space Brand</p>
+          <h2 className={styles.whyTitle}>Защо Luminis?</h2>
+          <p className={styles.whySubtitle}>Ние не сме просто Космически бранд</p>
 
           <div className={styles.comparisonTable}>
             <table>
               <thead>
                 <tr>
-                  <th>LudoSphere</th>
-                  <th>Others</th>
+                  <th>Luminis</th>
+                  <th>Другите</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>✔ Elegant</td>
+                  <td>✔ Елегантни</td>
                   <td className={styles.cross}>✘</td>
                 </tr>
                 <tr>
-                  <td>✔ Durable</td>
+                  <td>✔ Издръжливи</td>
                   <td className={styles.cross}>✘</td>
                 </tr>
                 <tr>
-                  <td>✔ Artistic</td>
+                  <td>✔ Артистични</td>
                   <td className={styles.cross}>✘</td>
                 </tr>
                 <tr>
-                  <td className={styles.cross}>✘ Cheap</td>
+                  <td className={styles.cross}>✘ Евтини</td>
                   <td>✔</td>
                 </tr>
               </tbody>
