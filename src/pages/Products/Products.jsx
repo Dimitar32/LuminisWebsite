@@ -1,5 +1,5 @@
 import {/*useState,*/ React} from 'react';
-import { Link } from 'react-router-dom'; 
+import { useLocation, Link } from 'react-router-dom'; 
 import './Products.css';
 import Saturn from '../Products/luminis saturn.png';
 import Heart from '../Products/luminis heart.png';
@@ -18,8 +18,11 @@ const blurProducts = [
 ];
 
 const Products = () => {
+    const location = useLocation();
+    const isHomePage = location.pathname === '/'; // Adjust if your home page route is different
+
     return (
-        <section id="products" className="products-section">
+        <section id="products" className={`products-section ${isHomePage ? 'no-margin' : ''}`}>
             <h2 className="products-title">Нашите продукти</h2>
             {products.map(product => (
                 <Link to={`/product/${product.id}`} key={product.id} className="product-link">

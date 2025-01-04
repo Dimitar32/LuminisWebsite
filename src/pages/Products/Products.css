@@ -172,6 +172,10 @@ h3, p {
     font-size: 17px;
   }
 
+  .no-margin {
+    margin-top: 0; /* Remove margin only on Home Page */
+  }
+  
 @media (max-width: 992px) {
     .product-card {
         max-width: 200px;
