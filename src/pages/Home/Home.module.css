@@ -9,6 +9,8 @@
     background: url('./luminis\ background4.png') no-repeat center center/cover;
     color: #ffffff;
     font-family: 'Arial', sans-serif;
+    margin-top: 260px;
+    margin-bottom: 260px;
   }
   
   /* Content and text styles */
@@ -20,6 +22,7 @@
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
+    font-family: 'Playfair Display'
   }
   
   .actionButton {
@@ -34,6 +37,7 @@
     margin-bottom: 1.5rem;
     transition: background-color 0.3s ease-in-out;
     background-color: #b392ac;
+    font-family: 'Montserrat'
   }
   
   .actionButton:hover {
@@ -43,11 +47,14 @@
   
   .tagline {
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: 'Montserrat'
   }
+
   .whyLudoSphere {
     text-align: center;
-    margin-top: 30px; /* Space below tagline */
+    margin-top: 35px; /* Space below tagline */
+    font-family: 'Montserrat';
   }
   
   .whyTitle {
@@ -55,6 +62,7 @@
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 10px;
+    font-family: 'Montserrat';
   }
   
   .whySubtitle {
@@ -62,6 +70,7 @@
     font-style: italic;
     color: #b392ac;
     margin-bottom: 20px;
+    font-family: 'Montserrat';
   }
   
   .comparisonTable {
@@ -78,6 +87,7 @@
     color: white;
     border-radius: 5px;
     overflow: hidden;
+    font-family: 'Montserrat';
   }
   
   th, td {
@@ -102,6 +112,12 @@
     }
   }
   
+  .productsSection {
+    margin-top: 8px;
+    padding-top: 0px;
+    text-align: center;
+  }
+  
 @media (max-width: 1200px) {
 
     .general-info p {
@@ -124,6 +140,11 @@
 }
 
 @media (max-width: 768px) {
+    .homeContainer {
+        margin-top: 440px;
+        margin-bottom: 440px;
+    }
+
     .general-info p {
         font-size: 13px;
     }

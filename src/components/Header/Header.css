@@ -12,6 +12,7 @@
     top: 0;
     width: 100%;
     z-index: 1000;
+    font-family: 'Montserrat';
 }
 
     .header h1 {
@@ -20,6 +21,7 @@
         font-family: "Permanent Marker", cursive;
         font-weight: 800;
         font-style: normal;
+        font-family: 'Montserrat';
     }
     
 .logo {
@@ -40,6 +42,7 @@ nav {
     justify-content: center; /* Center the navigation links */
     flex-grow: 1; /* Allow nav to expand and center properly */
     padding-right: 160px;
+    font-family: 'Montserrat';
 }
 
     nav a {

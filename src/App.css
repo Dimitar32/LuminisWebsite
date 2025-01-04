@@ -5,6 +5,7 @@ body, html {
     width: 100%;
     overflow-x: hidden;
     font-family: 'Arial', sans-serif; /* Чист и прост шрифт, подходящ за детски сайт */
+    font-family: 'Montserrat';
     /*padding-top: 25px;*/ /* Това число трябва да отговаря на височината на хедъра */
 }
 
@@ -17,12 +18,14 @@ body, html {
     display: flex;
     flex-direction: column; /* Управление на основната ориентация на компонентите */
     align-items: center; /* Центрира компонентите хоризонтално */
+    font-family: 'Montserrat';
 }
 
 nav a {
     color: white; /* Цвят на връзките в навигацията */
     text-decoration: none; /* Премахва подчертаването на връзките */
     margin: 0 10px; /* Разстояние между навигационните връзки */
+    font-family: 'Montserrat';
 }
 
     nav a:hover {
@@ -32,6 +35,7 @@ nav a {
 main {
     flex-grow: 1; /* Осигурява, че основното съдържание заема наличното пространство */
     width: 100%; /* Ширина на основното съдържание */
+    font-family: 'Montserrat';
 }
 
 

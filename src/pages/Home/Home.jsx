@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Products from '../Products/Products.jsx';
 import styles from "../Home/Home.module.css";
 
 const Home = () => {
@@ -15,6 +16,10 @@ const Home = () => {
         <h1 className={styles.title}>Докосни Вселената в ръцете си.</h1>
         <button className={styles.actionButton} onClick={handleNavigate}>Поръчай сега</button>
         <p className={styles.tagline}>Luminis – където изкуството среща звездите.</p>
+        
+        <div className={styles.productsSection}>
+          <Products />
+        </div>
 
         {/* Why LudoSphere Section - Now Positioned Below the Tagline */}
         <div className={styles.whyLudoSphere}>

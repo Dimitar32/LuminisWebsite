@@ -9,11 +9,13 @@
     box-sizing: border-box; /* Включва падинг и рамка в широчината */
     position: flex;
     bottom: 0;
+    font-family: 'Montserrat';
 }
 
 .link{
     color: inherit; /* Наследява цвета на родителя или го променете на желания */
     text-decoration: none; /* Премахва подчертаването */
+    font-family: 'Montserrat';
 }
 
     .link:hover{
@@ -23,7 +25,7 @@
 .link-privacy{
     color: inherit; /* Наследява цвета на родителя или го променете на желания */
     text-decoration: none; /* Премахва подчертаването */
-
+    font-family: 'Montserrat';
 }
 
     .link-privacy:hover{

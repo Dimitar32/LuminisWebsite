@@ -8,6 +8,7 @@
     scroll-margin-top: 80px;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 140px;
+    font-family: 'Montserrat';
 }
 
 .products-title {
@@ -17,11 +18,13 @@
     font-size: 41px;
     color: #f77fbe;
     margin: 20px 0 10px;
+    font-family: 'Montserrat';
 }
 
 .product-link {
     text-decoration: none;
     color: inherit;
+    font-family: 'Montserrat';
 }
 
 .product-card {
@@ -35,6 +38,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Lobster';
+    font-family: 'Montserrat';
     /* background-color: #1B1F3B; */
 }
 
@@ -69,6 +73,7 @@
     color: #999;
     text-decoration: line-through;
     margin: 5px 0;
+    font-family: 'Montserrat';
 }
 
 .new-price {
@@ -77,11 +82,13 @@
     font-weight: bold;
     margin-left: 0;
     margin-right: 0;
+    font-family: 'Montserrat';
 }
 
 h3, p {
     color:white;
     margin: 5px;
+    font-family: 'Montserrat';
 }
 
 
@@ -89,8 +96,7 @@ h3, p {
     max-width: 200px;
     position: relative;
     display: inline-block;
-      
-      
+    font-family: 'Montserrat';
 }
 
 .product-card-blur {
