@@ -45,6 +45,62 @@
     font-style: italic;
     font-size: 1.2rem;
   }
+  .whyLudoSphere {
+    text-align: center;
+    margin-top: 30px; /* Space below tagline */
+  }
+  
+  .whyTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .whySubtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #b392ac;
+    margin-bottom: 20px;
+  }
+  
+  .comparisonTable {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  table {
+    width: 50%;
+    max-width: 400px;
+    border-collapse: collapse;
+    background-color: rgba(179, 146, 172, 0.7); /* Semi-transparent */
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ffffff;
+  }
+  
+  th {
+    background-color: #b392ac;
+    color: white;
+  }
+  
+  .cross {
+    color: red;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    table {
+      width: 80%;
+    }
+  }
   
 @media (max-width: 1200px) {
 
