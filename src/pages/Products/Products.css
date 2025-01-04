@@ -173,9 +173,9 @@ h3, p {
   }
 
   .no-margin {
-    margin-top: 0; /* Remove margin only on Home Page */
+    margin-top: 41px; /* Remove margin only on Home Page */
   }
-  
+
 @media (max-width: 992px) {
     .product-card {
         max-width: 200px;
