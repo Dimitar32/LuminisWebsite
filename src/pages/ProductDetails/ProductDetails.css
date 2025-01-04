@@ -1,12 +1,10 @@
-/* Основен контейнер за продуктите */
 .product-details-section {
     display: flex;
-    /* flex-direction: row; Елементите са подредени в ред: снимка вляво, детайли вдясно */
     justify-content: space-between;
     align-items: flex-start; /* Всички елементи започват от горната част */
     padding: 50px 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 0;
     font-family: 'Roboto', sans-serif;
     padding-top:  11.3%;
 }
