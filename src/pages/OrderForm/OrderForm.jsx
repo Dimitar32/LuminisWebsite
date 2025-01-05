@@ -151,7 +151,7 @@ const OrderForm = () => {
                         name="note" 
                         value={formData.note} 
                         onChange={handleChange} 
-                        placeholder="Ако искате до личен адрес може да го оставите тука"
+                        placeholder="Ако искате до личен адрес или не намирате офиса на Еконт може да го оставите тука"
                         rows="5" 
                         cols="35"
                     />
