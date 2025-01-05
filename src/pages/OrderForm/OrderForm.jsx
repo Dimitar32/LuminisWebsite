@@ -7,11 +7,9 @@ const OrderForm = () => {
     const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
 
-    // Econt Office States
     const [offices, setOffices] = useState([]);  
     const [cityFilter, setCityFilter] = useState('');
 
-    // Order form fields
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -32,18 +30,13 @@ const OrderForm = () => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     
                 const data = await response.json();
-                console.log("📌 Econt API Full Response:", data); // Debugging
     
                 if (data?.offices) {
-                    // 🔥 Filter out only Bulgarian offices (if API doesn't do it properly)
                     const bulgarianOffices = data.offices.filter(office => 
                         office.address?.city?.country?.code2 === "BG"
                     );
     
                     setOffices(bulgarianOffices);
-                    
-                    // Log first few offices to see structure
-                    console.log("📌 Sample Office Data:", data.offices.slice(0, 5));
                 } else {
                     console.error("❌ No offices found:", data);
                 }
@@ -56,7 +49,6 @@ const OrderForm = () => {
         fetchEcontOffices();
     }, []);
 
-    // Handle input changes for form fields
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -155,7 +147,14 @@ const OrderForm = () => {
 
                 <div className="form-group">
                     <label>Бележка</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Ако искате до личен адрес може да го оставите тука" />
+                    <textarea 
+                        name="note" 
+                        value={formData.note} 
+                        onChange={handleChange} 
+                        placeholder="Ако искате до личен адрес може да го оставите тука"
+                        rows="5" 
+                        cols="35"
+                    />
                 </div>
 
                 <div className="cart-items">
