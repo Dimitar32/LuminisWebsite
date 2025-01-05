@@ -90,6 +90,21 @@
     color:#1B1F3B;
 }
 
+/* Limit the height of the dropdown */
+.form-group select {
+    width: 100%; /* Ensures it takes full width */
+    height: 40px; /* Adjust height as needed */
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Limit dropdown list height and enable scrolling */
+.form-group select option {
+    max-height: 200px; /* Set max height for dropdown */
+    overflow-y: auto; /* Enable vertical scroll if too many options */
+}
 
 /* Mobile-friendly медийни заявки */
 @media (max-width: 768px) {
