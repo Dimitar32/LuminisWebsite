@@ -155,7 +155,7 @@ const OrderForm = () => {
 
                 <div className="form-group">
                     <label>Бележка</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Ако искате до личен адрес може да го оставите тука" />
                 </div>
 
                 <div className="cart-items">
