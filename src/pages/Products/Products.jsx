@@ -7,10 +7,10 @@ import MilkyWay from '../Products/luminis milky way.png';
 import Earth from '../Products/luminis earth.png';
 
 const products = [
-    { id: 1, name: 'Luminis Saturn', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Saturn },
-    { id: 2, name: 'Luminis Milky Way', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: MilkyWay },
-    { id: 3, name: 'Luminis Earth', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Earth },
-    { id: 4, name: 'Luminis Heart', oldPrice: '35.99 лв', price: '25.99 лв', imageUrl: Heart }
+    { id: 1, name: 'Luminis Saturn', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Saturn },
+    { id: 2, name: 'Luminis Milky Way', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: MilkyWay },
+    { id: 3, name: 'Luminis Earth', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Earth },
+    { id: 4, name: 'Luminis Heart', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Heart }
 ];
 
 const blurProducts = [
