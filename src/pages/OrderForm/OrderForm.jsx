@@ -35,7 +35,12 @@ const OrderForm = () => {
                 console.log("📌 Econt API Full Response:", data); // Debugging
     
                 if (data?.offices) {
-                    setOffices(data.offices);
+                    // 🔥 Filter out only Bulgarian offices (if API doesn't do it properly)
+                    const bulgarianOffices = data.offices.filter(office => 
+                        office.address?.city?.country?.code2 === "BG"
+                    );
+    
+                    setOffices(bulgarianOffices);
                     
                     // Log first few offices to see structure
                     console.log("📌 Sample Office Data:", data.offices.slice(0, 5));
@@ -146,6 +151,11 @@ const OrderForm = () => {
                             <option value="">Няма намерени офиси</option>
                         )}
                     </select>
+                </div>
+
+                <div className="form-group">
+                    <label>Бележка</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
                 </div>
 
                 <div className="cart-items">
