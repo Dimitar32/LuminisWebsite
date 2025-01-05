@@ -23,7 +23,7 @@ const OrderForm = () => {
     useEffect(() => {
         const fetchEcontOffices = async () => {
             try {
-                const response = await fetch('https://demo.econt.com/ee/services/Nomenclatures/NomenclaturesService.getOffices.json', {
+                const response = await fetch('https://ee.econt.com/services/Nomenclatures/NomenclaturesService.getOffices.json', {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ filter: { countryCode: "BGR" } })
