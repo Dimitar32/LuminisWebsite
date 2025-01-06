@@ -50,13 +50,23 @@ const OrderForm = () => {
         fetchEcontOffices();
     }, []);
 
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         address: e.target.value, 
+    //         [name]: value
+    //     });
+    // };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            address: e.target.value, 
-            [name]: value
-        });
+    
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,  // Update only the specific field
+            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+        }));
     };
 
     const handleCityFilterChange = (e) => {
@@ -73,7 +83,7 @@ const OrderForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const orderDetails = cartItems
-            .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
+            .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
             .join('\n');
          
         formData.city = cityFilter;
