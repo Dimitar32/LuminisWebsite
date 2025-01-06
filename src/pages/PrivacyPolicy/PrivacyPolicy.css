@@ -33,6 +33,7 @@
   
   .privacy-info li {
     margin-bottom: 8px; /* Разстояние между елементите на списъка */
+    color:white;
   }
   
   @media (max-width: 600px) {
