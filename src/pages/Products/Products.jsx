@@ -7,10 +7,10 @@ import MilkyWay from '../Products/luminis milky way.png';
 import Earth from '../Products/luminis earth.png';
 
 const products = [
-    { id: 1, name: 'Luminis Saturn', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Saturn },
-    { id: 2, name: 'Luminis Milky Way', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: MilkyWay },
-    { id: 3, name: 'Luminis Earth', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Earth },
-    { id: 4, name: 'Luminis Heart', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: Heart }
+    { id: 1, name: 'Luminis Saturn', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Saturn },
+    { id: 2, name: 'Luminis Milky Way', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: MilkyWay },
+    { id: 3, name: 'Luminis Earth', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Earth },
+    { id: 4, name: 'Luminis Heart', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Heart }
 ];
 
 const blurProducts = [
@@ -29,7 +29,7 @@ const Products = () => {
                     <div key={product.id} className="product-card">
                         <img src={product.imageUrl} alt={product.name} className="product-image" />
                         <div className="discount-label">
-                            <span>-28%</span>
+                            <span>-26%</span>
                         </div>
                         <h3>{product.name}</h3>
                         <p className="old-price">{product.oldPrice}</p> 
