@@ -5,12 +5,14 @@ import Saturn from '../Products/luminis saturn.png';
 import Heart from '../Products/luminis heart.png';
 import MilkyWay from '../Products/luminis milky way.png';
 import Earth from '../Products/luminis earth.png';
+import Perla from '../Products/Perla12.png';
 
 const products = [
     { id: 1, name: 'Luminis Saturn', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Saturn },
     { id: 2, name: 'Luminis Milky Way', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: MilkyWay },
     { id: 3, name: 'Luminis Earth', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Earth },
-    { id: 4, name: 'Luminis Heart', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Heart }
+    { id: 4, name: 'Luminis Heart', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Heart },
+    { id: 5, name: 'Колие с перла в мида', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Perla }
 ];
 
 const blurProducts = [

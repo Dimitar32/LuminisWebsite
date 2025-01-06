@@ -14,8 +14,9 @@ const OrderForm = () => {
         firstName: '',
         lastName: '',
         phone: '',
-        office: '',
-        city: ''
+        address: '',
+        city: '',
+        note: ''
     });
 
     useEffect(() => {
@@ -53,16 +54,15 @@ const OrderForm = () => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
+            address: e.target.value, 
             [name]: value
         });
     };
 
-    // Handle city filter input change
     const handleCityFilterChange = (e) => {
         setCityFilter(e.target.value);
     };
 
-    // Fixed filtering: Use `settlement.name` instead of `city`
     const filteredOffices = offices.filter((office) => {
         const fullAddress = office.address?.fullAddress?.toLowerCase().trim() || "";
         const searchInput = cityFilter.toLowerCase().trim();
@@ -70,14 +70,13 @@ const OrderForm = () => {
         return fullAddress.includes(searchInput);
     });
     
-    console.log("🔍 Filtered City Input:", cityFilter);
-    console.log("🔍 Filtered Offices:", filteredOffices);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const orderDetails = cartItems
             .map(item => `Name: ${item.name}, Quantity: ${item.quantity}, Option: ${item.option || 'None'}`)
             .join('\n');
+         
+        formData.city = cityFilter;
 
         const emailData = { ...formData, order: orderDetails };
 
@@ -89,8 +88,9 @@ const OrderForm = () => {
                     firstName: '',
                     lastName: '',
                     phone: '',
-                    office: '',
-                    city: ''
+                    address: '',
+                    city: '',
+                    note: ''
                 });
                 clearCart();
             })
@@ -117,7 +117,6 @@ const OrderForm = () => {
                     <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
                 </div>
 
-                {/* City Search Input */}
                 <div className="form-group">
                     <label>Търси офис по град</label>
                     <input 
@@ -128,14 +127,18 @@ const OrderForm = () => {
                     />
                 </div>
 
-                {/* Econt Office Dropdown */}
                 <div className="form-group">
                     <label>Офис на Еконт</label>
-                    <select name="office" value={formData.office} onChange={handleChange} required>
+                    <select
+                        name="office"
+                        value={formData.address}
+                        onChange={handleChange}
+                        required
+                    >
                         <option value="">Избери офис</option>
                         {filteredOffices.length > 0 ? (
                             filteredOffices.map((office) => (
-                                <option key={office.code} value={office.code}>
+                                <option key={office.code} value={'Име на офиса: ' + office.name + ' ; Адрес: ' + office.address.fullAddress}>
                                     {office.name || "Няма име"} - {office.address.settlement?.name || office.address.fullAddress || "Няма адрес"}
                                 </option>
                             ))

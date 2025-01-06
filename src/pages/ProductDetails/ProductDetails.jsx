@@ -9,6 +9,9 @@ import Saturn from '../Products/luminis saturn.png';
 import Heart from '../Products/luminis heart.png';
 import MilkyWay from '../Products/luminis milky way.png';
 import Earth from '../Products/luminis earth.png';
+import Perla11 from '../Products/Perla11.png';
+import Perla12 from '../Products/Perla12.png';
+import Perla13 from '../Products/Perla13.png';
 import { CartContext } from '../contexts/CartContext'; 
 
 const products = [
@@ -27,6 +30,11 @@ const products = [
                         С диаметър 6 см, тя комбинира стил и хармония, като създава балансирана и топла атмосфера в дома или офиса. 
                         Нейният мек блясък придава усещане за спокойствие и връзка с природата, правейки я перфектен подарък за любителите на естествените елементи и естетиката.✨` },
     { id: 4, name: 'Luminis Heart', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: [Heart], description: `
+                        Luminis Heart е изящна светеща кристална сфера с диаметър 6 см, създадена да излъчва топлина и емоция. 
+                        Вдъхновена от енергията на любовта и хармонията, тя нежно отразява светлината, създавайки уютна и романтична атмосфера. 
+                        Перфектна като декорация за дома, като символ на емоционална връзка или като специален подарък за любим човек. 
+                        Добавете нотка на нежност и сияние към пространството си с Luminis Heart – светлината, която говори със сърцето! ❤️✨` },
+    { id: 5, name: 'Колие с перла в мида', oldPrice: '35.99 лв', price: '29.99 лв', imageUrl: [Perla11, Perla12, Perla13], description: `
                         Luminis Heart е изящна светеща кристална сфера с диаметър 6 см, създадена да излъчва топлина и емоция. 
                         Вдъхновена от енергията на любовта и хармонията, тя нежно отразява светлината, създавайки уютна и романтична атмосфера. 
                         Перфектна като декорация за дома, като символ на емоционална връзка или като специален подарък за любим човек. 
