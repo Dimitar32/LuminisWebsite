@@ -26,7 +26,7 @@ const Footer = () => {
 
                 <a
                     target="_blank" rel="noopener noreferrer"
-                    href="https://www.instagram.com/keycouple8/"
+                    href="https://www.instagram.com/luminis8/"
                     aria-label="Instagram"
                     >
                     <FaInstagram />
@@ -34,17 +34,17 @@ const Footer = () => {
 
                 <a
                     target="_blank" rel="noopener noreferrer"
-                    href="https://www.tiktok.com/@keycouple8"
+                    href="https://www.tiktok.com/@luminis8"
                     aria-label="TikTok"
                     >
                     <FaTiktok />
                 </a>
             </div>
             <p>Тел: +359 879 330 389</p>
-            <p>Свържете се с нас: keycouple@outlook.com</p>
+            <p>Свържете се с нас: luminis8@outlook.com</p>
             <Link to="/delivery" className='link'>Правила за доставка</Link>
             
-            <p /*style={{ marginTop: '20px', marginBottom: '0px' }}*/>&copy; {new Date().getFullYear()} Luminis. <Link to="/privacy" className='link-privacy'>Всички права запазени</Link></p>
+            <p>&copy; {new Date().getFullYear()} Luminis. <Link to="/privacy" className='link-privacy'>Всички права запазени</Link></p>
         </footer>
     );
 };
