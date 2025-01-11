@@ -160,7 +160,7 @@ const OrderForm = () => {
     
             clearCart(); // Clear cart after successful order
     
-            alert("Поръчката е успешно изпратена!");
+            // alert("Поръчката е успешно изпратена!");
     
         } catch (error) {
             console.error("❌ Error submitting order:", error);
