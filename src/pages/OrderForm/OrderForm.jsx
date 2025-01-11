@@ -50,6 +50,35 @@ const OrderForm = () => {
         fetchEcontOffices();
     }, []);
 
+    //call my api
+    // useEffect(() => {
+    //     const fetchEcontOffices = async () => {
+    //         try {
+    //             // Call your Express API instead of the Econt API
+    //             const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": "application/json" },
+    //                 body: JSON.stringify({})
+    //             });
+    
+    //             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+    //             const data = await response.json();
+    
+    //             if (data?.success && data.offices) {
+    //                 setOffices(data.offices);
+    //             } else {
+    //                 console.error("❌ No offices found:", data);
+    //             }
+    //         } catch (error) {
+    //             console.error("❌ Error fetching Econt offices:", error);
+    //             alert("Грешка при зареждането на офисите на Еконт.");
+    //         }
+    //     };
+    
+    //     fetchEcontOffices();
+    // }, []);
+
     // const handleChange = (e) => {
     //     const { name, value } = e.target;
     //     setFormData({
@@ -80,8 +109,64 @@ const OrderForm = () => {
         return fullAddress.includes(searchInput);
     });
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (cartItems.length === 0) {
+            alert("Количката е празна!");
+            return;
+        }
+    
+        try {
+            const orderData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                phone: formData.phone,
+                address: formData.address,  // Address is set based on office selection
+                city: cityFilter,  // The user-selected city
+                note: formData.note || "",
+                orderItems: cartItems.map(item => ({
+                    продукт: item.name,
+                    количество: item.quantity,
+                    опция: item.option || "",
+                    цена: parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity
+                }))
+            };
+    
+            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {  // Replace with actual API URL
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(orderData),
+            });
+    
+            const result = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(result.message || "Грешка при запазване на поръчката.");
+            }
+    
+            setIsOrdered(true);
+            setTimeout(() => setIsOrdered(false), 5000);
+            setFormData({
+                firstName: '',
+                lastName: '',
+                phone: '',
+                address: '',
+                city: '',
+                note: ''
+            });
+    
+            clearCart(); // Clear cart after successful order
+    
+            alert("Поръчката е успешно изпратена!");
+    
+        } catch (error) {
+            console.error("❌ Error submitting order:", error);
+            alert("Грешка при изпращане на поръчката. Опитайте отново.");
+        }
+
         const orderDetails = cartItems
             .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
             .join('\n');
