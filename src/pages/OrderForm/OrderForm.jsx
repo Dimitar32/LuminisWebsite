@@ -19,54 +19,25 @@ const OrderForm = () => {
         note: ''
     });
 
-    useEffect(() => {
-        const fetchEcontOffices = async () => {
-            try {
-                const response = await fetch('https://ee.econt.com/services/Nomenclatures/NomenclaturesService.getOffices.json', {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ filter: { countryCode: "BGR" } })
-                });
-    
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    
-                const data = await response.json();
-    
-                if (data?.offices) {
-                    const bulgarianOffices = data.offices.filter(office => 
-                        office.address?.city?.country?.code2 === "BG"
-                    );
-    
-                    setOffices(bulgarianOffices);
-                } else {
-                    console.error("❌ No offices found:", data);
-                }
-            } catch (error) {
-                console.error("❌ Error fetching Econt offices:", error);
-                alert("Грешка при зареждането на офисите на Еконт.");
-            }
-        };
-    
-        fetchEcontOffices();
-    }, []);
-
-    //call my api
     // useEffect(() => {
     //     const fetchEcontOffices = async () => {
     //         try {
-    //             // Call your Express API instead of the Econt API
-    //             const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
-    //                 method: "POST",
+    //             const response = await fetch('https://ee.econt.com/services/Nomenclatures/NomenclaturesService.getOffices.json', {
+    //                 method: 'POST',
     //                 headers: { "Content-Type": "application/json" },
-    //                 body: JSON.stringify({})
+    //                 body: JSON.stringify({ filter: { countryCode: "BGR" } })
     //             });
     
     //             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     
     //             const data = await response.json();
     
-    //             if (data?.success && data.offices) {
-    //                 setOffices(data.offices);
+    //             if (data?.offices) {
+    //                 const bulgarianOffices = data.offices.filter(office => 
+    //                     office.address?.city?.country?.code2 === "BG"
+    //                 );
+    
+    //                 setOffices(bulgarianOffices);
     //             } else {
     //                 console.error("❌ No offices found:", data);
     //             }
@@ -78,6 +49,35 @@ const OrderForm = () => {
     
     //     fetchEcontOffices();
     // }, []);
+
+    //call my api
+    useEffect(() => {
+        const fetchEcontOffices = async () => {
+            try {
+                // Call your Express API instead of the Econt API
+                const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({})
+                });
+    
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+                const data = await response.json();
+    
+                if (data?.success && data.offices) {
+                    setOffices(data.offices);
+                } else {
+                    console.error("❌ No offices found:", data);
+                }
+            } catch (error) {
+                console.error("❌ Error fetching Econt offices:", error);
+                alert("Грешка при зареждането на офисите на Еконт.");
+            }
+        };
+    
+        fetchEcontOffices();
+    }, []);
 
     // const handleChange = (e) => {
     //     const { name, value } = e.target;
@@ -122,29 +122,28 @@ const OrderForm = () => {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 phone: formData.phone,
-                address: formData.address,  // Address is set based on office selection
-                city: cityFilter,  // The user-selected city
+                address: formData.address,  
+                city: cityFilter,  
                 note: formData.note || "",
                 orderItems: cartItems.map(item => ({
-                    продукт: item.name,
-                    количество: item.quantity,
-                    опция: item.option || "",
-                    цена: parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity
+                    id: item.id,
+                    name: item.name,
+                    quantity: item.quantity,
+                    option: item.option || "",
+                    price: parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity
                 }))
             };
     
-            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {  // Replace with actual API URL
+            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderData),
             });
     
             const result = await response.json();
     
             if (!response.ok) {
-                throw new Error(result.message || "Грешка при запазване на поръчката.");
+                throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
             }
     
             setIsOrdered(true);
@@ -158,13 +157,10 @@ const OrderForm = () => {
                 note: ''
             });
     
-            clearCart(); // Clear cart after successful order
-    
-            // alert("Поръчката е успешно изпратена!");
-    
+            clearCart();
         } catch (error) {
             console.error("❌ Error submitting order:", error);
-            alert("Грешка при изпращане на поръчката. Опитайте отново.");
+            alert(error.message);
         }
 
         const orderDetails = cartItems
