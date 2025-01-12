@@ -12,7 +12,7 @@ const products = [
     { id: 2, name: 'Luminis Milky Way', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: MilkyWay },
     { id: 3, name: 'Luminis Earth', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Earth },
     { id: 4, name: 'Luminis Heart', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Heart },
-    { id: 5, name: 'Колие с перла в мида', oldPrice: '39.99 лв', price: '29.99 лв', imageUrl: Perla }
+    { id: 5, name: 'Колие с перла в мида', oldPrice: '25.99 лв', price: '17.99 лв', imageUrl: Perla }
 ];
 
 const blurProducts = [
