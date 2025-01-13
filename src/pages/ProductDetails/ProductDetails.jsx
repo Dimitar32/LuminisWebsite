@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -54,6 +54,10 @@ const ProductDetails = () => {
     const [showModal, setShowModal] = useState(false);
 
     const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+    
+    const [cityFilter, setCityFilter] = useState('');
+
+    const [offices, setOffices] = useState([]);  
 
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
@@ -81,52 +85,184 @@ const ProductDetails = () => {
         option: product.option
     });
 
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value
+    //     });
+    // };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+    
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,  // Update only the specific field
+            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+        }));
     };
 
-    const handleSubmit = (e) => {
-        if (product.id === 7 && !formData.option) {
-            alert('Моля, изберете опция преди да добавите този продукт в количката.');
-            return;
+    const handleCityFilterChange = (e) => {
+        setCityFilter(e.target.value);
+    };
+
+
+    useEffect(() => {
+        const fetchEcontOffices = async () => {
+            try {
+                // Call your Express API instead of the Econt API
+                const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({})
+                });
+    
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+                const data = await response.json();
+    
+                if (data?.success && data.offices) {
+                    setOffices(data.offices);
+                } else {
+                    console.error("❌ No offices found:", data);
+                }
+            } catch (error) {
+                console.error("❌ Error fetching Econt offices:", error);
+                alert("Грешка при зареждането на офисите на Еконт.");
+            }
+        };
+    
+        fetchEcontOffices();
+    }, []);
+
+    const filteredOffices = offices.filter((office) => {
+        const fullAddress = office.address?.fullAddress?.toLowerCase().trim() || "";
+        const searchInput = cityFilter.toLowerCase().trim();
+        
+        return fullAddress.includes(searchInput);
+    });
+    
+    // const handleSubmit = (e) => {
+    //     if (product.id === 7 && !formData.option) {
+    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
+    //         return;
+    //     }
+
+    //     e.preventDefault();
+
+    //     emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
+    //         .then((response) => {
+    //             // console.log('SUCCESS!', response.status, response.text);
+    //             // alert('Вашата поръчка е изпратена успешно!');
+    //         })
+    //         .catch((err) => {
+    //             errOrder = err;
+    //             console.error('FAILED...', err);
+    //             alert('Грешка при изпращането на поръчката.');
+    //         });
+        
+    //     if (errOrder === '')
+    //     {
+    //         handleCloseModal();
+    //         handleSubmitFastOrder(product);
+    //     }
+
+    //     setFormData({
+    //         firstName: '',
+    //         lastName: '',
+    //         phone: '',
+    //         address: '',
+    //         city: '',
+    //         postalCode: '',
+    //         country: '',
+    //         order: product.name,
+    //         quantity: 1,
+    //         additionalInfo: '',
+    //         option: product.option
+    //     });
+    // };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const orderData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                phone: formData.phone,
+                address: formData.address,  
+                city: cityFilter,  
+                note: formData.note || "",
+                orderItems: 
+                    [{
+                        id: product.id,
+                        name: product.name,
+                        quantity: 1,
+                        option: product.option || "",
+                        price: parseFloat(product.price.replace(/[^\d.-]/g, '')) * 1
+                    }]
+            };
+            console.log(orderData.orderItems);
+            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData),
+            });
+    
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
+            }
+    
+            setIsOrdered(true);
+            setTimeout(() => setIsOrdered(false), 5000);
+            setFormData({
+                firstName: '',
+                lastName: '',
+                phone: '',
+                address: '',
+                city: '',
+                note: ''
+            });
+    
+        } catch (error) {
+            console.error("❌ Error submitting order:", error);
+            alert(error.message);
         }
 
-        e.preventDefault();
+        const orderDetails = (`Продукт: ${product.name}, Количество: ${product.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
+         
+        formData.city = cityFilter;
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
-            .then((response) => {
-                // console.log('SUCCESS!', response.status, response.text);
-                // alert('Вашата поръчка е изпратена успешно!');
+        const emailData = { ...formData, order: orderDetails };
+
+        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X')
+            .then(() => {
+                setIsOrdered(true);
+                setTimeout(() => setIsOrdered(false), 5000);
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    phone: '',
+                    address: '',
+                    city: '',
+                    note: ''
+                });
             })
             .catch((err) => {
-                errOrder = err;
                 console.error('FAILED...', err);
                 alert('Грешка при изпращането на поръчката.');
             });
-        
+
         if (errOrder === '')
         {
             handleCloseModal();
             handleSubmitFastOrder(product);
         }
-
-        setFormData({
-            firstName: '',
-            lastName: '',
-            phone: '',
-            address: '',
-            city: '',
-            postalCode: '',
-            country: '',
-            order: product.name,
-            quantity: 1,
-            additionalInfo: '',
-            option: product.option
-        });
+        
     };
 
     const { addToCart } = useContext(CartContext); 
@@ -282,67 +418,75 @@ const ProductDetails = () => {
                     <div className="modal-content">
                         <span className="close" onClick={handleCloseModal}> &times;{/*times;*/}</span>
                         <form  onSubmit={handleSubmit} className="order-form">
-                            <label>
-                                Име:
-                                <input 
-                                    type="text" 
-                                    name="firstName" 
-                                    value={formData.firstName} 
-                                    onChange={handleChange} 
-                                    required 
+                        <div className="form-group">
+                                <label>
+                                    Име:
+                                    <input 
+                                        type="text" 
+                                        name="firstName" 
+                                        value={formData.firstName} 
+                                        onChange={handleChange} 
+                                        required 
+                                        />
+                                </label>
+                                <label>
+                                    Фамилия:
+                                    <input 
+                                        type="text" 
+                                        name="lastName" 
+                                        value={formData.lastName} 
+                                        onChange={handleChange} 
+                                        required 
+                                        />
+                                </label>
+                                <label>
+                                    Телефон:
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
                                     />
-                            </label>
-                            <label>
-                                Фамилия:
-                                <input 
-                                    type="text" 
-                                    name="lastName" 
-                                    value={formData.lastName} 
-                                    onChange={handleChange} 
-                                    required 
+                                </label>
+                                <label>
+                                    Брой {product.name} :
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        value={formData.quantity}
+                                        onChange={handleChange}
+                                        min="1"
+                                        required
                                     />
-                            </label>
-                            <label>
-                                Телефон:
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Брой {product.name} :
-                                <input
-                                    type="number"
-                                    name="quantity"
-                                    value={formData.quantity}
-                                    onChange={handleChange}
-                                    min="1"
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Адрес на офис на Еконт:
-                                <input
-                                    type="text"
-                                    name="address"
+                                </label>
+                                <label>Търси офис по град
+                                    <input 
+                                        type="text" 
+                                        value={cityFilter} 
+                                        onChange={handleCityFilterChange} 
+                                        placeholder="Например: София" 
+                                    />
+                                </label>
+                                <label>Офис на Еконт</label>
+                                <select
+                                    name="office"
                                     value={formData.address}
                                     onChange={handleChange}
                                     required
-                                />
-                            </label>
-                            <label>
-                                Град:
-                                <input
-                                    type="text"
-                                    name="city"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
+                                    >
+                                    <option value="">Избери офис</option>
+                                    {filteredOffices.length > 0 ? (
+                                        filteredOffices.map((office) => (
+                                            <option key={office.code} value={'Име на офиса: ' + office.name + ' ; Адрес: ' + office.address.fullAddress}>
+                                                {office.name || "Няма име"} - {office.address.settlement?.name || office.address.fullAddress || "Няма адрес"}
+                                            </option>
+                                        ))
+                                    ) : (
+                                        <option value="">Няма намерени офиси</option>
+                                    )}
+                                </select>
+                            </div>
                             <button type="submit">Поръчай</button>
                         </form>
                     </div>
