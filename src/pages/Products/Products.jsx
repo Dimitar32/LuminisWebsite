@@ -80,7 +80,7 @@ const Products = () => {
                     <img src={product.imageUrl} alt={product.productname} className="product-image-blur" />
                         <h3>{product.productname}</h3>
                         <p className="product-card-blur-old-price">??.?? лв.</p> {/* Показване на старата цена със зачеркване */}
-                        <p className="new-price">{product.discount_price}Очаквайте скоро</p> {/* Показване на новата цена */}
+                        <p className="new-price">Очаквайте скоро</p> {/* Показване на новата цена */}
                 </div>
                 </Link>
             ))}
