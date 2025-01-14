@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import emailjs from 'emailjs-com';
+import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
 import './ProductDetails.css';
 import Saturn from '../Products/luminis saturn.png';
 import Heart from '../Products/luminis heart.png';
@@ -57,7 +58,7 @@ const ProductDetails = () => {
     
     const [cityFilter, setCityFilter] = useState('');
 
-    const [offices, setOffices] = useState([]);  
+    const { offices } = useEcontOffices();
 
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
@@ -85,14 +86,6 @@ const ProductDetails = () => {
         option: product.option
     });
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value
-    //     });
-    // };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
     
@@ -107,82 +100,12 @@ const ProductDetails = () => {
         setCityFilter(e.target.value);
     };
 
-
-    useEffect(() => {
-        const fetchEcontOffices = async () => {
-            try {
-                // Call your Express API instead of the Econt API
-                const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({})
-                });
-    
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    
-                const data = await response.json();
-    
-                if (data?.success && data.offices) {
-                    setOffices(data.offices);
-                } else {
-                    console.error("❌ No offices found:", data);
-                }
-            } catch (error) {
-                console.error("❌ Error fetching Econt offices:", error);
-                alert("Грешка при зареждането на офисите на Еконт.");
-            }
-        };
-    
-        fetchEcontOffices();
-    }, []);
-
     const filteredOffices = offices.filter((office) => {
         const fullAddress = office.address?.fullAddress?.toLowerCase().trim() || "";
         const searchInput = cityFilter.toLowerCase().trim();
         
         return fullAddress.includes(searchInput);
     });
-    
-    // const handleSubmit = (e) => {
-    //     if (product.id === 7 && !formData.option) {
-    //         alert('Моля, изберете опция преди да добавите този продукт в количката.');
-    //         return;
-    //     }
-
-    //     e.preventDefault();
-
-    //     emailjs.send('service_b06m24g', 'template_mk02aun', formData, 'mjkXxA3GKaz2EgF9X')
-    //         .then((response) => {
-    //             // console.log('SUCCESS!', response.status, response.text);
-    //             // alert('Вашата поръчка е изпратена успешно!');
-    //         })
-    //         .catch((err) => {
-    //             errOrder = err;
-    //             console.error('FAILED...', err);
-    //             alert('Грешка при изпращането на поръчката.');
-    //         });
-        
-    //     if (errOrder === '')
-    //     {
-    //         handleCloseModal();
-    //         handleSubmitFastOrder(product);
-    //     }
-
-    //     setFormData({
-    //         firstName: '',
-    //         lastName: '',
-    //         phone: '',
-    //         address: '',
-    //         city: '',
-    //         postalCode: '',
-    //         country: '',
-    //         order: product.name,
-    //         quantity: 1,
-    //         additionalInfo: '',
-    //         option: product.option
-    //     });
-    // };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -233,13 +156,13 @@ const ProductDetails = () => {
             alert(error.message);
         }
 
-        const orderDetails = (`Продукт: ${product.name}, Количество: ${product.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
+        const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
          
         formData.city = cityFilter;
 
         const emailData = { ...formData, order: orderDetails };
 
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X')
+        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
             .then(() => {
                 setIsOrdered(true);
                 setTimeout(() => setIsOrdered(false), 5000);

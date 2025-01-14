@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import emailjs from 'emailjs-com';
 import { CartContext } from '../contexts/CartContext';
+import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
 import './OrderForm.css';
 
 const OrderForm = () => {
     const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
-
-    const [offices, setOffices] = useState([]);  
     const [cityFilter, setCityFilter] = useState('');
 
     const [formData, setFormData] = useState({
@@ -19,25 +18,23 @@ const OrderForm = () => {
         note: ''
     });
 
+    //call my api
     // useEffect(() => {
     //     const fetchEcontOffices = async () => {
     //         try {
-    //             const response = await fetch('https://ee.econt.com/services/Nomenclatures/NomenclaturesService.getOffices.json', {
-    //                 method: 'POST',
+    //             // Call your Express API instead of the Econt API
+    //             const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
+    //                 method: "POST",
     //                 headers: { "Content-Type": "application/json" },
-    //                 body: JSON.stringify({ filter: { countryCode: "BGR" } })
+    //                 body: JSON.stringify({})
     //             });
     
     //             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     
     //             const data = await response.json();
     
-    //             if (data?.offices) {
-    //                 const bulgarianOffices = data.offices.filter(office => 
-    //                     office.address?.city?.country?.code2 === "BG"
-    //                 );
-    
-    //                 setOffices(bulgarianOffices);
+    //             if (data?.success && data.offices) {
+    //                 setOffices(data.offices);
     //             } else {
     //                 console.error("❌ No offices found:", data);
     //             }
@@ -50,43 +47,8 @@ const OrderForm = () => {
     //     fetchEcontOffices();
     // }, []);
 
-    //call my api
-    useEffect(() => {
-        const fetchEcontOffices = async () => {
-            try {
-                // Call your Express API instead of the Econt API
-                const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({})
-                });
-    
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    
-                const data = await response.json();
-    
-                if (data?.success && data.offices) {
-                    setOffices(data.offices);
-                } else {
-                    console.error("❌ No offices found:", data);
-                }
-            } catch (error) {
-                console.error("❌ Error fetching Econt offices:", error);
-                alert("Грешка при зареждането на офисите на Еконт.");
-            }
-        };
-    
-        fetchEcontOffices();
-    }, []);
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         address: e.target.value, 
-    //         [name]: value
-    //     });
-    // };
+    // Using the custom hook to fetch Econt offices
+    const { offices } = useEcontOffices();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -165,7 +127,7 @@ const OrderForm = () => {
     
             const emailData = { ...formData, order: orderDetails };
     
-            emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X')
+            emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
                 .then(() => {
                     setIsOrdered(true);
                     setTimeout(() => setIsOrdered(false), 5000);
