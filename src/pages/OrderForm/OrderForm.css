@@ -111,4 +111,8 @@
     .order-form-container {
         margin-top: 140px;
     }
+
+    .cart-items h3{
+        font-size: 17px;
+    }
 }

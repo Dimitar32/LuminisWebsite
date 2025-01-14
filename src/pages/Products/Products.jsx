@@ -62,7 +62,10 @@ const Products = () => {
                     <div key={product.id} className="product-card">
                         <img src={product.imageUrl} alt={product.productname} className="product-image" />
                         <div className="discount-label">
-                            <span>-26%</span>
+                            <span>
+                                {`-${((1 - product.discount_price / product.price) * 100).toFixed(0)}%`}
+                            </span>
+
                         </div>
                         <h3>{product.productname}</h3>
                         <p className="old-price">{product.price} лв.</p> 
@@ -77,7 +80,7 @@ const Products = () => {
                     <img src={product.imageUrl} alt={product.productname} className="product-image-blur" />
                         <h3>Изчерпано</h3>
                         <p className="product-card-blur-old-price">??.?? лв.</p> {/* Показване на старата цена със зачеркване */}
-                        <p className="new-price">{product.discount_price}</p> {/* Показване на новата цена */}
+                        <p className="new-price">{product.discount_price} лв.</p> {/* Показване на новата цена */}
                 </div>
                 </Link>
             ))}

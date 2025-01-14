@@ -156,39 +156,37 @@ const OrderForm = () => {
                 city: '',
                 note: ''
             });
+
+            const orderDetails = cartItems
+                .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
+                .join('\n');
+             
+            formData.city = cityFilter;
     
-            clearCart();
+            const emailData = { ...formData, order: orderDetails };
+    
+            emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X')
+                .then(() => {
+                    setIsOrdered(true);
+                    setTimeout(() => setIsOrdered(false), 5000);
+                    setFormData({
+                        firstName: '',
+                        lastName: '',
+                        phone: '',
+                        address: '',
+                        city: '',
+                        note: ''
+                    });
+                    clearCart();
+                })
+                .catch((err) => {
+                    console.error('FAILED...', err);
+                    alert('Грешка при изпращането на поръчката.');
+                });
         } catch (error) {
             console.error("❌ Error submitting order:", error);
             alert(error.message);
         }
-
-        const orderDetails = cartItems
-            .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
-            .join('\n');
-         
-        formData.city = cityFilter;
-
-        const emailData = { ...formData, order: orderDetails };
-
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X')
-            .then(() => {
-                setIsOrdered(true);
-                setTimeout(() => setIsOrdered(false), 5000);
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    phone: '',
-                    address: '',
-                    city: '',
-                    note: ''
-                });
-                clearCart();
-            })
-            .catch((err) => {
-                console.error('FAILED...', err);
-                alert('Грешка при изпращането на поръчката.');
-            });
     };
 
     return (
@@ -256,16 +254,23 @@ const OrderForm = () => {
                     {cartItems.length === 0 ? (
                         <p>Количката е празна!!!</p>
                     ) : (
-                        <ul>
-                            {cartItems.map(item => (
-                                <li key={item.id} className="cart-item">
-                                    {item.name} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
-                                    <button className="remove-button" type="button" onClick={() => removeFromCart(item.id)}>
-                                        Премахни
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+                        <>
+                            <ul>
+                                {cartItems.map(item => (
+                                    <li key={item.id} className="cart-item">
+                                        {item.name} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
+                                        <button className="remove-button" type="button" onClick={() => removeFromCart(item.id)}>
+                                            Премахни
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <h3>Цена без доставка: {cartItems
+                                .reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity), 0)
+                                .toFixed(2)} лв.
+                            </h3>
+                        </>
                     )}
                 </div>
 
