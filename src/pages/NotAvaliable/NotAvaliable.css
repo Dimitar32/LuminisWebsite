@@ -1,5 +1,5 @@
 .not-avaliable {
-    background-color: #f0f8ff; /* Светло син фон за приятен контраст */
+    background-color: inherit; /* Светло син фон за приятен контраст */
     color: #333; /* Тъмен текст за по-добра четимост */
     padding: 20px;
     padding-top: 80px; /* Регулирай според височината на header-а */
