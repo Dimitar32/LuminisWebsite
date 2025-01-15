@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import emailjs from 'emailjs-com';
-import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
+import useEcontOffices from '../../hooks/useEcontOffices';  
+import useSaveOrder from "../../hooks/useSaveOrder";
 import './ProductDetails.css';
 import Saturn from '../Products/luminis saturn.png';
 import Heart from '../Products/luminis heart.png';
@@ -43,7 +43,7 @@ const products = [
 ];
 
 const ProductDetails = () => {
-    let errOrder = "";
+    // let errOrder = "";
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
@@ -91,8 +91,8 @@ const ProductDetails = () => {
     
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value,  // Update only the specific field
-            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+            [name]: value,  
+            ...(name === "office" && { address: value }) 
         }));
     };
 
@@ -107,93 +107,103 @@ const ProductDetails = () => {
         return fullAddress.includes(searchInput);
     });
 
+    const { submitOrder } = useSaveOrder();
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        try {
-            const orderData = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                phone: formData.phone,
-                address: formData.address,  
-                city: cityFilter,  
-                note: formData.note || "",
-                orderItems: 
-                    [{
-                        id: product.id,
-                        name: product.name,
-                        quantity: 1,
-                        option: product.option || "",
-                        price: parseFloat(product.price.replace(/[^\d.-]/g, '')) * 1
-                    }]
-            };
-            console.log(orderData.orderItems);
-            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(orderData),
-            });
-    
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
-            }
-    
-            setIsOrdered(true);
-            setTimeout(() => setIsOrdered(false), 5000);
-            setFormData({
-                firstName: '',
-                lastName: '',
-                phone: '',
-                address: '',
-                city: '',
-                note: ''
-            });
-    
-        } catch (error) {
-            console.error("❌ Error submitting order:", error);
-            alert(error.message);
-        }
-
-        const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
-         
-        formData.city = cityFilter;
-
-        const emailData = { ...formData, order: orderDetails };
-
-        emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
-            .then(() => {
-                setIsOrdered(true);
-                setTimeout(() => setIsOrdered(false), 5000);
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    phone: '',
-                    address: '',
-                    city: '',
-                    note: ''
-                });
-            })
-            .catch((err) => {
-                console.error('FAILED...', err);
-                alert('Грешка при изпращането на поръчката.');
-            });
-
-        if (errOrder === '')
-        {
-            handleCloseModal();
-            handleSubmitFastOrder(product);
-        }
-        
+        const orderItems = [{ id: product.id, name: product.name, quantity: formData.quantity, option: product.option, price: product.price }];
+        await submitOrder(formData, orderItems, cityFilter);
+        handleCloseModal();
+        handleSubmitFastOrder(product);
     };
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    
+    //     try {
+    //         const orderData = {
+    //             firstName: formData.firstName,
+    //             lastName: formData.lastName,
+    //             phone: formData.phone,
+    //             address: formData.address,  
+    //             city: cityFilter,  
+    //             note: formData.note || "",
+    //             orderItems: 
+    //                 [{
+    //                     id: product.id,
+    //                     name: product.name,
+    //                     quantity: 1,
+    //                     option: product.option || "",
+    //                     price: parseFloat(product.price.replace(/[^\d.-]/g, '')) * 1
+    //                 }]
+    //         };
+    //         console.log(orderData.orderItems);
+    //         const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify(orderData),
+    //         });
+    
+    //         const result = await response.json();
+
+    //         if (!response.ok) {
+    //             throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
+    //         }
+    
+    //         setIsOrdered(true);
+    //         setTimeout(() => setIsOrdered(false), 5000);
+    //         setFormData({
+    //             firstName: '',
+    //             lastName: '',
+    //             phone: '',
+    //             address: '',
+    //             city: '',
+    //             note: ''
+    //         });
+    
+    //     } catch (error) {
+    //         console.error("❌ Error submitting order:", error);
+    //         alert(error.message);
+    //     }
+
+    //     const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
+         
+    //     formData.city = cityFilter;
+
+    //     const emailData = { ...formData, order: orderDetails };
+
+    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
+    //         .then(() => {
+    //             setIsOrdered(true);
+    //             setTimeout(() => setIsOrdered(false), 5000);
+    //             setFormData({
+    //                 firstName: '',
+    //                 lastName: '',
+    //                 phone: '',
+    //                 address: '',
+    //                 city: '',
+    //                 note: ''
+    //             });
+    //         })
+    //         .catch((err) => {
+    //             console.error('FAILED...', err);
+    //             alert('Грешка при изпращането на поръчката.');
+    //         });
+
+    //     if (errOrder === '')
+    //     {
+    //         handleCloseModal();
+    //         handleSubmitFastOrder(product);
+    //     }
+        
+    // };
 
     const { addToCart } = useContext(CartContext); 
 
     const handleSubmitFastOrder = () =>{
         setIsOrdered(true);
 
-        // Автоматично скриване на съобщението след 3 секунди
         setTimeout(() => {
             setIsOrdered(false);
         }, 5000);
@@ -206,23 +216,20 @@ const ProductDetails = () => {
         // }
     };
 
-    // Функция за добавяне в количката и показване на съобщението
     const handleAddToCart = (product, quantity, value) => {
         if (product.id === 7 && !value) {
             alert('Моля, изберете опция преди да добавите този продукт в количката.');
             return;
         }
 
-        addToCart(product, quantity, value); // Извиква съществуващата функция за добавяне в количката
+        addToCart(product, quantity, value); 
 
         if (quantity > 0) {
-            // Показване на съобщението
             setIsAdded(true);
         } else if (quantity === 0) {
             cantAddZeroToCart(true);
         }
 
-        // Автоматично скриване на съобщението след 1.5 секунди
         setTimeout(() => {
             cantAddZeroToCart(false);
             setIsAdded(false);
@@ -240,7 +247,7 @@ const ProductDetails = () => {
                 slidesPerView={1}
                 navigation
                 loop
-                className="swiper-container" // Ensure this class is applied
+                className="swiper-container" 
             >
                 {product.imageUrl.map((image, index) => (
                     <SwiperSlide key={index} className="swiper-slide">
@@ -313,7 +320,6 @@ const ProductDetails = () => {
                 </div>
             )}
 
-            {/* Показване на съобщението, когато е добавено в количката */}
             {cantAddZero && (
                 <div className="modal">
                     <div className="modal-content">
@@ -324,7 +330,6 @@ const ProductDetails = () => {
                 </div>
             )}
 
-             {/* Показване на съобщението, когато е добавено в количката */}
              {isOrdered && (
                 <div className="modal">
                     <div className="modal-content">
@@ -335,7 +340,6 @@ const ProductDetails = () => {
                 </div>
             )}
             
-            {/* Модал */}
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">

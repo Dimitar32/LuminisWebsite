@@ -1,5 +1,26 @@
 import emailjs from 'emailjs-com';
 
+const API_URL = "https://luminisapi.onrender.com/api";
+
+export const saveOrder = async (orderData) => {
+    try {
+        const response = await fetch(`${API_URL}/save-order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(orderData),
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result.message || "Грешка при запазване на поръчката. Моля, пробвайте пак!");
+        }
+        return result;
+    } catch (error) {
+        console.error("❌ Error submitting order:", error);
+        throw error;
+    }
+};
+
 export const sendOrderEmail = async (formData, productDetails = null) => {
     try {
         let orderDetails = productDetails
@@ -19,7 +40,7 @@ export const sendOrderEmail = async (formData, productDetails = null) => {
 
 export const fetchEcontOffices = async () => {
     try {
-      const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
+      const response = await fetch(`${API_URL}/get-offices`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({})

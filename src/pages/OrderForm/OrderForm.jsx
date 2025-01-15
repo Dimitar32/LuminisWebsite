@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import emailjs from 'emailjs-com';
 import { CartContext } from '../contexts/CartContext';
-import useEcontOffices from '../../hooks/useEcontOffices';  // Importing the custom hook
+import useEcontOffices from '../../hooks/useEcontOffices';  
+import useSaveOrder from "../../hooks/useSaveOrder";
 import './OrderForm.css';
 
 const OrderForm = () => {
@@ -17,6 +17,21 @@ const OrderForm = () => {
         city: '',
         note: ''
     });
+
+    const { submitOrder } = useSaveOrder();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (cartItems.length === 0) {
+            alert("Количката е празна!");
+            return;
+        }
+
+        await submitOrder(formData, cartItems, cityFilter, clearCart);
+        setIsOrdered(true);
+        setTimeout(() => setIsOrdered(false), 5000);
+    };
 
     //call my api
     // useEffect(() => {
@@ -47,7 +62,6 @@ const OrderForm = () => {
     //     fetchEcontOffices();
     // }, []);
 
-    // Using the custom hook to fetch Econt offices
     const { offices } = useEcontOffices();
 
     const handleChange = (e) => {
@@ -55,8 +69,8 @@ const OrderForm = () => {
     
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value,  // Update only the specific field
-            ...(name === "office" && { address: value }) // Update address ONLY when changing office
+            [name]: value,  
+            ...(name === "office" && { address: value }) 
         }));
     };
 
@@ -71,85 +85,85 @@ const OrderForm = () => {
         return fullAddress.includes(searchInput);
     });
     
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-        if (cartItems.length === 0) {
-            alert("Количката е празна!");
-            return;
-        }
+    //     if (cartItems.length === 0) {
+    //         alert("Количката е празна!");
+    //         return;
+    //     }
     
-        try {
-            const orderData = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                phone: formData.phone,
-                address: formData.address,  
-                city: cityFilter,  
-                note: formData.note || "",
-                orderItems: cartItems.map(item => ({
-                    id: item.id,
-                    name: item.name,
-                    quantity: item.quantity,
-                    option: item.option || "",
-                    price: parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity
-                }))
-            };
+    //     try {
+    //         const orderData = {
+    //             firstName: formData.firstName,
+    //             lastName: formData.lastName,
+    //             phone: formData.phone,
+    //             address: formData.address,  
+    //             city: cityFilter,  
+    //             note: formData.note || "",
+    //             orderItems: cartItems.map(item => ({
+    //                 id: item.id,
+    //                 name: item.name,
+    //                 quantity: item.quantity,
+    //                 option: item.option || "",
+    //                 price: parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity
+    //             }))
+    //         };
     
-            const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(orderData),
-            });
+    //         const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify(orderData),
+    //         });
     
-            const result = await response.json();
+    //         const result = await response.json();
     
-            if (!response.ok) {
-                throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
-            }
+    //         if (!response.ok) {
+    //             throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
+    //         }
     
-            setIsOrdered(true);
-            setTimeout(() => setIsOrdered(false), 5000);
-            setFormData({
-                firstName: '',
-                lastName: '',
-                phone: '',
-                address: '',
-                city: '',
-                note: ''
-            });
+    //         setIsOrdered(true);
+    //         setTimeout(() => setIsOrdered(false), 5000);
+    //         setFormData({
+    //             firstName: '',
+    //             lastName: '',
+    //             phone: '',
+    //             address: '',
+    //             city: '',
+    //             note: ''
+    //         });
 
-            const orderDetails = cartItems
-                .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
-                .join('\n');
+    //         const orderDetails = cartItems
+    //             .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Option: ${item.option}` : ''))
+    //             .join('\n');
              
-            formData.city = cityFilter;
+    //         formData.city = cityFilter;
     
-            const emailData = { ...formData, order: orderDetails };
+    //         const emailData = { ...formData, order: orderDetails };
     
-            emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
-                .then(() => {
-                    setIsOrdered(true);
-                    setTimeout(() => setIsOrdered(false), 5000);
-                    setFormData({
-                        firstName: '',
-                        lastName: '',
-                        phone: '',
-                        address: '',
-                        city: '',
-                        note: ''
-                    });
-                    clearCart();
-                })
-                .catch((err) => {
-                    console.error('FAILED...', err);
-                    alert('Грешка при изпращането на поръчката.');
-                });
-        } catch (error) {
-            console.error("❌ Error submitting order:", error);
-            alert(error.message);
-        }
-    };
+    //         emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
+    //             .then(() => {
+    //                 setIsOrdered(true);
+    //                 setTimeout(() => setIsOrdered(false), 5000);
+    //                 setFormData({
+    //                     firstName: '',
+    //                     lastName: '',
+    //                     phone: '',
+    //                     address: '',
+    //                     city: '',
+    //                     note: ''
+    //                 });
+    //                 clearCart();
+    //             })
+    //             .catch((err) => {
+    //                 console.error('FAILED...', err);
+    //                 alert('Грешка при изпращането на поръчката.');
+    //             });
+    //     } catch (error) {
+    //         console.error("❌ Error submitting order:", error);
+    //         alert(error.message);
+    //     }
+    // };
 
     return (
         <div className="order-form-container">
