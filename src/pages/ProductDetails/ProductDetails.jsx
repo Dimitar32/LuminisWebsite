@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import useEcontOffices from '../../hooks/useEcontOffices';  
@@ -43,7 +43,7 @@ const products = [
 ];
 
 const ProductDetails = () => {
-    // let errOrder = "";
+    const navigate = useNavigate();
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
@@ -117,88 +117,6 @@ const ProductDetails = () => {
         handleSubmitFastOrder(product);
     };
 
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    
-    //     try {
-    //         const orderData = {
-    //             firstName: formData.firstName,
-    //             lastName: formData.lastName,
-    //             phone: formData.phone,
-    //             address: formData.address,  
-    //             city: cityFilter,  
-    //             note: formData.note || "",
-    //             orderItems: 
-    //                 [{
-    //                     id: product.id,
-    //                     name: product.name,
-    //                     quantity: 1,
-    //                     option: product.option || "",
-    //                     price: parseFloat(product.price.replace(/[^\d.-]/g, '')) * 1
-    //                 }]
-    //         };
-    //         console.log(orderData.orderItems);
-    //         const response = await fetch("https://luminisapi.onrender.com/api/save-order", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify(orderData),
-    //         });
-    
-    //         const result = await response.json();
-
-    //         if (!response.ok) {
-    //             throw new Error(result.message || "Грешка при запазване на поръчката. Моля пробвайте пак!");
-    //         }
-    
-    //         setIsOrdered(true);
-    //         setTimeout(() => setIsOrdered(false), 5000);
-    //         setFormData({
-    //             firstName: '',
-    //             lastName: '',
-    //             phone: '',
-    //             address: '',
-    //             city: '',
-    //             note: ''
-    //         });
-    
-    //     } catch (error) {
-    //         console.error("❌ Error submitting order:", error);
-    //         alert(error.message);
-    //     }
-
-    //     const orderDetails = (`Продукт: ${product.name}, Количество: ${formData.quantity}` + (product.option ? `, Option: ${product.option}` : ''));
-         
-    //     formData.city = cityFilter;
-
-    //     const emailData = { ...formData, order: orderDetails };
-
-    //     emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'PLenflNoe6IDfFa9G')
-    //         .then(() => {
-    //             setIsOrdered(true);
-    //             setTimeout(() => setIsOrdered(false), 5000);
-    //             setFormData({
-    //                 firstName: '',
-    //                 lastName: '',
-    //                 phone: '',
-    //                 address: '',
-    //                 city: '',
-    //                 note: ''
-    //             });
-    //         })
-    //         .catch((err) => {
-    //             console.error('FAILED...', err);
-    //             alert('Грешка при изпращането на поръчката.');
-    //         });
-
-    //     if (errOrder === '')
-    //     {
-    //         handleCloseModal();
-    //         handleSubmitFastOrder(product);
-    //     }
-        
-    // };
-
     const { addToCart } = useContext(CartContext); 
 
     const handleSubmitFastOrder = () =>{
@@ -206,6 +124,7 @@ const ProductDetails = () => {
 
         setTimeout(() => {
             setIsOrdered(false);
+            navigate("/"); 
         }, 5000);
     }
     

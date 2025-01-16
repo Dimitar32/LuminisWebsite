@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
 import './OrderForm.css';
 
 const OrderForm = () => {
+    const navigate = useNavigate();
     const [isOrdered, setIsOrdered] = useState(false);
     const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
     const [cityFilter, setCityFilter] = useState('');
@@ -30,7 +32,11 @@ const OrderForm = () => {
 
         await submitOrder(formData, cartItems, cityFilter, clearCart);
         setIsOrdered(true);
-        setTimeout(() => setIsOrdered(false), 5000);
+        
+        setTimeout(() => {
+            setIsOrdered(false);
+            navigate("/"); 
+        }, 5000);
     };
 
     //call my api
