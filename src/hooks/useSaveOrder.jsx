@@ -23,7 +23,6 @@ const useSaveOrder = () => {
                 }))
             };
 
-            console.log(orderData);
             await saveOrder(orderData);
 
             setIsOrdered(true);

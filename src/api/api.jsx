@@ -1,6 +1,32 @@
-import emailjs from 'emailjs-com';
+const API_URL = "https://luminisapi.onrender.com/api";/*"http://localhost:5000/api"; */
 
-const API_URL = "https://luminisapi.onrender.com/api";
+
+/**
+ * Fetch products from the API.
+ * @param {string} brand - Optional brand filter.
+ * @returns {Promise<Object[]>} - List of products.
+ */
+export const fetchProducts = async (brand) => {
+  try {
+      const url = brand ? `${API_URL}/products?brand=${brand}` : `${API_URL}/products`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data.products) {
+          throw new Error("Invalid API response");
+      }
+
+      return data.products;
+  } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+  }
+};
 
 export const saveOrder = async (orderData) => {
     try {
@@ -10,30 +36,14 @@ export const saveOrder = async (orderData) => {
             body: JSON.stringify(orderData),
         });
 
-        const result = await response.json();
         if (!response.ok) {
-            throw new Error(result.message || "Грешка при запазване на поръчката. Моля, пробвайте пак!");
+            const errorText = await response.text();
+            throw new Error(`Failed to save order: ${errorText}`);
         }
-        return result;
+
+        return await response.json();
     } catch (error) {
         console.error("❌ Error submitting order:", error);
-        throw error;
-    }
-};
-
-export const sendOrderEmail = async (formData, productDetails = null) => {
-    try {
-        let orderDetails = productDetails
-            ? `Продукт: ${productDetails.name}, Количество: ${formData.quantity}` + 
-              (productDetails.option ? `, Option: ${productDetails.option}` : '')
-            : formData.order;
-
-        const emailData = { ...formData, order: orderDetails };
-
-        await emailjs.send('service_b06m24g', 'template_mk02aun', emailData, 'mjkXxA3GKaz2EgF9X');
-        return true;
-    } catch (error) {
-        console.error("❌ Error sending email:", error);
         throw error;
     }
 };

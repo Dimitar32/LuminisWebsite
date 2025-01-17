@@ -39,35 +39,6 @@ const OrderForm = () => {
         }, 5000);
     };
 
-    //call my api
-    // useEffect(() => {
-    //     const fetchEcontOffices = async () => {
-    //         try {
-    //             // Call your Express API instead of the Econt API
-    //             const response = await fetch("https://luminisapi.onrender.com/api/get-offices", {
-    //                 method: "POST",
-    //                 headers: { "Content-Type": "application/json" },
-    //                 body: JSON.stringify({})
-    //             });
-    
-    //             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    
-    //             const data = await response.json();
-    
-    //             if (data?.success && data.offices) {
-    //                 setOffices(data.offices);
-    //             } else {
-    //                 console.error("❌ No offices found:", data);
-    //             }
-    //         } catch (error) {
-    //             console.error("❌ Error fetching Econt offices:", error);
-    //             alert("Грешка при зареждането на офисите на Еконт.");
-    //         }
-    //     };
-    
-    //     fetchEcontOffices();
-    // }, []);
-
     const { offices } = useEcontOffices();
 
     const handleChange = (e) => {
