@@ -1,64 +1,64 @@
-.privacy-section{
+.privacySection{
     margin-top: 8%;
     margin-bottom: 11%;
 }
 
-.privacy-section p{
+.privacySection p{
     font-size: 17px; 
     text-align: left; /* Ляво подравняване за параграфи и списъци */
 }
 
-.privacy-info {
+.privacyInfo {
     text-align: left; /* Подравняване на целия текст наляво */
     font-size: 17px; 
     margin-left: 20%;
     margin-right: 10%;
   }
   
-.privacy-info h3 {
+.privacyInfo h3 {
     text-align: left; /* Ляво подравняване за параграфи и списъци */
 }
 
-  .privacy-info p {
+  .privacyInfo p {
     margin-left: 1%; /* Няма разстояние между параграфите */
     line-height: 1.6; /* Контролира височината на редовете за по-добра четимост */
     text-align: left; /* Ляво подравняване за параграфи и списъци */
   }
   
-  .privacy-info ul {
+  .privacyInfo ul {
     padding-left: 10%; /* Отстояние на целия списък навътре */
     margin: 10px 0; /* Отстояние между списъка и другите елементи */
     text-align: left; /* Ляво подравняване за параграфи и списъци */
   }
   
-  .privacy-info li {
+  .privacyInfo li {
     margin-bottom: 8px; /* Разстояние между елементите на списъка */
     color:white;
   }
   
   @media (max-width: 600px) {
-    .privacy-section{
+    .privacySection{
         margin-top: 28%;
         margin-bottom: 26%;
     }
     
-    .privacy-section p{
+    .privacySection p{
         font-size: 14px; 
     }
 
-    .privacy-info {
+    .privacyInfo {
       font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
       padding: 10px; /* Допълнително отстояние около съдържанието */
       margin-left: 2%;
       margin-right: 1%;
     }
   
-    .privacy-info ul {
+    .privacyInfo ul {
       padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
       margin-left: 2%;
     }
   
-    .privacy-info li {
+    .privacyInfo li {
       margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
     }
   }

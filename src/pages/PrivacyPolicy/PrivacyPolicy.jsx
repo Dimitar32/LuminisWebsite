@@ -1,11 +1,11 @@
 import React from 'react';
-import '../PrivacyPolicy/PrivacyPolicy.css'; // Импорт на CSS стиловете
+import styles from '../PrivacyPolicy/PrivacyPolicy.module.css'; // Импорт на CSS стиловете
 
 const Privacy = () => {
     return(
-        <section className='privacy-section'>
+        <section className={styles.privacySection}>
             <h2>Политика за поверителност</h2>
-            <div class="privacy-info">
+            <div className={styles.privacyInfo}>
                 <h3>Въведение</h3>
                 <p>
                     Добре дошли в Luminis. Ние се ангажираме да защитаваме личната ви информация и да спазваме поверителността ви. Тази Политика за поверителност обяснява как събираме, използваме и разкриваме информация, която събираме за потребителите на нашия уебсайт и други услуги, които предоставяме.
