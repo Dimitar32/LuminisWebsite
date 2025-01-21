@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
-import './Cart.css';
+import styles from './Cart.module.css';
 
 const Cart = () => {
     const { cartItems, removeFromCart } = useContext(CartContext);
@@ -20,19 +20,19 @@ const Cart = () => {
 
     return (
         <>
-            <button className="cart-toggle-button" onClick={handleCartToggle}>
+            <button className={styles.cartToggleButton} onClick={handleCartToggle}>
                 <i className="fas fa-shopping-cart"></i> {/* Икона за количка */}
                 <span className="cart-count">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span> 
             </button>
 
-            <div className={`cart-sidebar ${isOpen ? 'open' : 'closed'}`}>
-                <div className="cart-header">
+            <div className={`${styles.cartSidebar} ${isOpen ? styles.cartSidebarOpen : styles.cartSidebarClosed}`}>
+                <div className={styles.cartHeader}>
                     <h3>Вашата количка</h3>
-                    <button className="close-cart" onClick={handleCartToggle}>
+                    <button className={styles.closeCart} onClick={handleCartToggle}>
                         {isOpen ? 'x' : '←'}
                     </button>
                 </div>
-                <div className="cart-content">
+                <div className={styles.cartContent}>
                     {cartItems.length === 0 ? (
                         <p>Количката е празна.</p>
                     ) : (
@@ -40,18 +40,18 @@ const Cart = () => {
                             {cartItems.map(item => (
                                 <li key={item.id}>
                                     {item.name} - {item.quantity} бр. <br /> {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
-                                    <button className='remove-item-from-cart' onClick={() => removeFromCart(item.id)}>Премахни</button>
+                                    <button className={styles.removeItemFromCart} onClick={() => removeFromCart(item.id)}>Премахни</button>
                                 </li>
                             ))}
                         </ul>
                     )}
                 </div>
                 {cartItems.length > 0 && (
-                    <button className="checkout-button" onClick={handleCheckout}>Поръчай</button>
+                    <button className={styles.checkoutButton} onClick={handleCheckout}>Поръчай</button>
                 )}
             </div>
 
-            {isOpen && <div className="overlay" onClick={handleCartToggle}></div>}
+            {isOpen && <div className={styles.overlay} onClick={handleCartToggle}></div>}
         </>
     );
 };
