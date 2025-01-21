@@ -22,29 +22,29 @@
         text-decoration: underline;
     }
 
-.link-privacy{
+.linkPrivacy{
     color: inherit; /* Наследява цвета на родителя или го променете на желания */
     text-decoration: none; /* Премахва подчертаването */
     font-family: 'Montserrat';
 }
 
-    .link-privacy:hover{
+    .linkPrivacy:hover{
         text-decoration: underline;
     }
 
-.social-links a {
+.socialLinks a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
     font-size: 16px; /* Подходящ размер на шрифта за социални връзки */
 }
 
-    .social-links a:hover {
+    .socialLinks a:hover {
         color:white;
         text-decoration: underline; /* Подчертаване при ховър */
     }
 
-.fixed-footer {
+.fixedFooter {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -56,7 +56,7 @@
         padding: 10px; /* Намалява падинга на по-малки устройства */
     }
 
-    .social-links a {
+    .socialLinks a {
         font-size: 14px; /* Намалява размера на шрифта на социалните връзки */
         margin: 0 5px; /* Намалява разстоянието между социалните връзки */
     }
@@ -65,18 +65,18 @@
         text-decoration: underline;
     }
 
-    .link-privacy{
+    .linkPrivacy{
         text-decoration: underline;
     }
 
 }
 
 @media (max-width: 600px) {
-    /*.social-links {
+    /*.socialLinks {
         display: block;*/ /* Променя разположението на блок за по-добър визуален ред */
     /*}*/
 
-        /*.social-links a {
+        /*.socialLinks a {
             display: inline-block;*/ /* Позволява по-добро управление на стиловете */
             /*width: 100%;*/ /* Заема цялата налична ширина */
             /*margin: 10px 0;*/ /* Увеличава вертикалните маржини за разделение */

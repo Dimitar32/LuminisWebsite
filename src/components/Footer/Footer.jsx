@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation} from 'react-router-dom';
-import './Footer.css';
+import styles from './Footer.module.css';
 import {
     // FaFacebookF,
     FaInstagram,
@@ -11,11 +11,12 @@ const Footer = () => {
     const location = useLocation();
   
     const fixedFooterPages = ['/notavl', '/delivery'];
-    const footerClass = fixedFooterPages.includes(location.pathname) ? 'fixed-footer' : '';
+    const isFixedFooter = fixedFooterPages.includes(location.pathname);
+    // const footerClass = fixedFooterPages.includes(location.pathname) ? 'fixed-footer' : '';
   
     return (
-        <footer className={`footer ${footerClass}`}>
-            <div className="social-links">
+        <footer className={`${styles.footer} ${isFixedFooter ? styles.fixedFooter : ''}`}>
+            <div className={styles.socialLinks}>
                 {/* <a
                     target="_blank" rel="noopener noreferrer"
                     href="https://www.facebook.com/profile.php?id=61566904842905"
@@ -42,9 +43,9 @@ const Footer = () => {
             </div>
             <p>Тел: +359 879 330 389</p>
             <p>Свържете се с нас: theluminis@outlook.com</p>
-            <Link to="/delivery" className='link'>Правила за доставка</Link>
+            <Link to="/delivery" className={styles.link}>Правила за доставка</Link>
             
-            <p>&copy; {new Date().getFullYear()} Luminis. <Link to="/privacy" className='link-privacy'>Всички права запазени</Link></p>
+            <p>&copy; {new Date().getFullYear()} Luminis. <Link to="/privacy" className={styles.linkPrivacy}>Всички права запазени</Link></p>
         </footer>
     );
 };
