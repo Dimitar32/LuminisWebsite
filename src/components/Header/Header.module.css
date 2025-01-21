@@ -31,7 +31,7 @@
     padding-left: 80px;
 }
 
-.logo-image {
+.logoImage {
     width: 80px; /* Adjust size as needed */
     height: auto;
 }
@@ -46,7 +46,7 @@ nav {
 }
 
     nav a {
-        color: black; /* Бял текст за линковете */
+        color: white; /* Бял текст за линковете */
         text-decoration: none; /* Премахва подчертаването */
         margin-left: 20px; /* Отстояние между линковете */
         font-weight: bold; /* По-дебел шрифт за линковете */

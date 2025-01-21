@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; 
+import styles from './Header.module.css'; 
 import logo from '../Header/Luminis_logo-removebg-preview.png';
 
 const Header = () => {
     return (
-        <header className="header">
-            <Link to="/" className="logo">
-                <img src={logo} alt="Luminis Logo" className="logo-image" />
+        <header className={styles.header}>
+            <Link to="/" className={styles.logo}>
+                <img src={logo} alt="Luminis Logo" className={styles.logoImage} />
             </Link>
             <nav>
                 <Link to="/">Начало</Link>

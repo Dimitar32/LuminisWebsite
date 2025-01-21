@@ -31,6 +31,7 @@
     margin-bottom: 8px; /* Разстояние между елементите на списъка */
     color:white;
   }
+
   @media (max-width: 1060px) and (min-width: 601px) {
     .deliverySection {
         margin-top: 17%;
@@ -74,31 +75,30 @@
     }
 }
 
-  @media (max-width: 600px) {
-    .deliverySection{
-        margin-top: 28%;
-        margin-bottom: 26%;
-    }
-    
-    .deliverySection p{
-        padding-left: 1%; 
-        font-size: 14px; 
-    }
-
-    .deliveryInfo {
-      font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
-      padding: 10px; /* Допълнително отстояние около съдържанието */
-    }
+@media (max-width: 600px) {
+  .deliverySection{
+      margin-top: 28%;
+      margin-bottom: 26%;
+  }
   
-    .deliveryInfo ul {
-      padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
-    }
-  
-    .deliveryInfo li {
-      margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
-    }
+  .deliverySection p{
+      padding-left: 1%; 
+      font-size: 14px; 
   }
 
+  .deliveryInfo {
+    font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
+    padding: 10px; /* Допълнително отстояние около съдържанието */
+  }
+
+  .deliveryInfo ul {
+    padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
+  }
+
+  .deliveryInfo li {
+    margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
+  }
+}
 
 @media (max-width: 400px) {
   .deliverySection {
