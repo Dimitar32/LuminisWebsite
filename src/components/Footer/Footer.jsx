@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation} from 'react-router-dom';
 import './Footer.css';
 import {
-    FaFacebookF,
+    // FaFacebookF,
     FaInstagram,
     FaTiktok
 } from 'react-icons/fa';
@@ -16,13 +16,13 @@ const Footer = () => {
     return (
         <footer className={`footer ${footerClass}`}>
             <div className="social-links">
-                <a
+                {/* <a
                     target="_blank" rel="noopener noreferrer"
                     href="https://www.facebook.com/profile.php?id=61566904842905"
                     aria-label="Facebook"
                     >
                     <FaFacebookF />
-                </a>
+                </a> */}
 
                 <a
                     target="_blank" rel="noopener noreferrer"

@@ -1,0 +1,131 @@
+.deliverySection{
+    margin-top: 8%;
+    margin-bottom: 11%;
+}
+
+.deliverySection p{
+    font-size: 17px; 
+    text-align: left; /* Подравняване на целия текст наляво */
+    padding-left: 20%; 
+}
+
+.deliveryInfo {
+    text-align: left; /* Подравняване на целия текст наляво */
+    font-size: 17px; 
+  }
+  
+  .deliveryInfo p {
+    margin: 0; /* Няма разстояние между параграфите */
+    line-height: 1.6; /* Контролира височината на редовете за по-добра четимост */
+  }
+  
+  .deliveryInfo ul {
+    padding-left: 20%; /* Отстояние на целия списък навътре */
+    padding-right: 15%;
+    margin: 10px 0; /* Отстояние между списъка и другите елементи */
+  }
+  
+  .deliveryInfo li {
+    margin-left: 5%;
+    /* margin-right: 15%; */
+    margin-bottom: 8px; /* Разстояние между елементите на списъка */
+    color:white;
+  }
+  @media (max-width: 1060px) and (min-width: 601px) {
+    .deliverySection {
+        margin-top: 17%;
+        margin-bottom: 17%;
+        padding: 0 8%; /* Add side padding for tablets/smaller laptops */
+    }
+
+    .deliverySection p {
+        padding-left: 10%; /* Adjust padding for better spacing */
+        font-size: 15px; /* Slightly smaller font for mid-sized screens */
+        line-height: 1.6; /* Consistent line height */
+    }
+
+    .deliveryInfo {
+        font-size: 15px; /* Slightly smaller font for better readability */
+        padding: 15px; /* Add padding around content for a balanced look */
+        max-width: 90%; /* Restrict content width for centered alignment */
+        margin: 0 auto; /* Center the content on the screen */
+    }
+
+    .deliveryInfo ul {
+        padding-left: 10%; /* Reduced padding for mid-sized screens */
+        padding-right: 10%;
+        margin-top: 15px;
+    }
+
+    .deliveryInfo li {
+        margin-bottom: 10px; /* Slightly increase spacing between list items */
+    }
+
+    .deliverySection h2 {
+        text-align: center; /* Center align headings for a cleaner layout */
+        font-size: 20px; /* Adjust header size */
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: auto; /* Allow buttons to shrink or grow based on content */
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+  @media (max-width: 600px) {
+    .deliverySection{
+        margin-top: 28%;
+        margin-bottom: 26%;
+    }
+    
+    .deliverySection p{
+        padding-left: 1%; 
+        font-size: 14px; 
+    }
+
+    .deliveryInfo {
+      font-size: 14px; /* По-малък размер на шрифта за мобилни устройства */
+      padding: 10px; /* Допълнително отстояние около съдържанието */
+    }
+  
+    .deliveryInfo ul {
+      padding-left: 15px; /* Намалено отстояние на списъка за по-малки екрани */
+    }
+  
+    .deliveryInfo li {
+      margin-bottom: 6px; /* По-малко разстояние между елементите на списъка */
+    }
+  }
+
+
+@media (max-width: 400px) {
+  .deliverySection {
+      margin-top: 35%;
+      margin-bottom: 35%;
+  }
+
+  .deliverySection p {
+      font-size: 12px; /* Reduce font size further for very small screens */
+      padding-left: 3%; /* Adjust padding for ultra-small screens */
+  }
+
+  .deliveryInfo {
+      font-size: 12px;
+      padding: 5px; /* Minimize padding for better spacing */
+  }
+
+  .deliveryInfo ul {
+      padding-left: 10px; /* Reduce left padding for ultra-small screens */
+  }
+
+  .deliveryInfo li {
+      margin-bottom: 8px; /* Slightly reduce list item spacing */
+  }
+
+  /* Further adjust header for ultra-small screens */
+  .deliverySection h2 {
+      font-size: 16px;
+  }
+}
