@@ -14,10 +14,12 @@ const Products = () => {
     return (
         <section id="products" className={`products-section ${isHomePage ? 'no-margin' : ''}`}>
             <h2 className="products-title">Нашите продукти</h2>
-            {products.map(product => (
-                <Link to={`/product/${product.id}`} key={product.id} className="product-link">
+            {products.map(product => {
+                const primaryImage = product.images.find(image => image.is_primary)?.image_url || '/images/placeholder.png';
+                return(
+                    <Link to={`/product/${product.id}`} key={product.id} className="product-link">
                     <div key={product.id} className="product-card">
-                        <img src={product.imageUrl} alt={product.productname} className="product-image" />
+                        <img src={primaryImage} alt={product.productname} className="product-image" />
                         <div className="discount-label">
                             <span>
                                 {`-${((1 - product.discount_price / product.price) * 100).toFixed(0)}%`}
@@ -29,18 +31,23 @@ const Products = () => {
                         <p className="new-price">{product.discount_price} лв.</p>    
                         {/* <button className="add-to-cart-button" onClick={handleAddToCart}>Добави</button> */}
                     </div>
-                </Link>
-            ))}
-            {blurProducts.map(product => (
-                <Link to={`/notavl`} key={product.id} className="product-link">
-                <div key={product.id} className="product-card-blur">
-                    <img src={product.imageUrl} alt={product.productname} className="product-image-blur" />
-                        <h3>{product.productname}</h3>
-                        <p className="product-card-blur-old-price">??.?? лв.</p> {/* Показване на старата цена */}
-                        <p className="new-price">Очаквайте скоро</p> {/* Показване на новата цена */}
-                </div>
-                </Link>
-            ))}
+                    </Link>
+                );
+            })}
+            {blurProducts.map(product => {
+                const primaryImage = product.images.find(image => image.is_primary)?.image_url || '/images/placeholder.png';
+                return(
+
+                    <Link to={`/notavl`} key={product.id} className="product-link">
+                    <div key={product.id} className="product-card-blur">
+                        <img src={primaryImage} alt={product.productname} className="product-image-blur" />
+                            <h3>{product.productname}</h3>
+                            <p className="product-card-blur-old-price">??.?? лв.</p> {/* Показване на старата цена */}
+                            <p className="new-price">Очаквайте скоро</p> {/* Показване на новата цена */}
+                    </div>
+                    </Link>
+                );
+            })}
         </section>
     );
 };
