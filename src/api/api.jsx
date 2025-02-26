@@ -73,3 +73,18 @@ export const fetchEcontOffices = async () => {
     }
   };
   
+  
+// Fetch product details by ID
+export const getProductById = async (id) => {
+  try {
+      const response = await fetch(`${API_URL}/products/${id}`);
+      const result = await response.json();
+
+      if (!response.ok) {
+          throw new Error(result.message || "Грешка при зареждане на продукта.");
+      }
+      return result.product;
+  } catch (error) {
+      throw error;
+  }
+};

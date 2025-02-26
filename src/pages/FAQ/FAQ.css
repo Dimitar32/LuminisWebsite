@@ -22,7 +22,7 @@
     width: 100%;
     padding: 10px;
     font-size: 18px;
-    color: white;
+    color: black;
     margin: 5px;
     text-align: center;
     transition: transform 0.5s ease-in-out, text-shadow 0.3s ease-in-out;
@@ -37,7 +37,7 @@
 
     .faq-question:hover {
         text-decoration: underline;
-        color: white;
+        color: black;
         transform: scale(1.1);
     }
 
@@ -48,7 +48,7 @@
     margin: 5px;
     text-align: center;
     font-family: 'Lobster';
-    color:white;
+    color:black;
     font-family: 'Montserrat';
 }
 
@@ -60,8 +60,8 @@
             display: block;
             max-height: 500px;
             opacity: 1;
-            background-color: #1B1F3B;
-            color: white;
+            background-color: #e4e4e4;
+            color: black;
         }
         
 .link-faq{
@@ -76,7 +76,7 @@ h2 {
     text-align: center;
     background: linear-gradient(90deg, white, white);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-text-fill-color: transparent; */
     text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
     padding: 10px;
     margin: 20px 0;

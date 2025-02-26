@@ -16,10 +16,10 @@ const useSaveOrder = () => {
                 note: formData.note || "",
                 orderItems: orderItems.map(item => ({
                     id: item.id,
-                    name: item.name,
+                    name: item.productname,
                     quantity: item.quantity,
                     option: item.option || "",
-                    price: parseFloat(item.price.replace(/[^\d.-]/g, "")) * item.quantity
+                    price: parseFloat(item.discount_price.replace(/[^\d.-]/g, "")) * item.quantity
                 }))
             };
 
@@ -29,7 +29,7 @@ const useSaveOrder = () => {
             setTimeout(() => setIsOrdered(false), 5000);
 
             const orderDetails = orderItems
-                .map(item => `Продукт: ${item.name}, Количество: ${item.quantity}` + (item.option ? `, Опция: ${item.option}` : ""))
+                .map(item => `Продукт: ${item.productname}, Количество: ${item.quantity}` + (item.option ? `, Опция: ${item.option}` : ""))
                 .join("\n");
 
             formData.city = cityFilter;

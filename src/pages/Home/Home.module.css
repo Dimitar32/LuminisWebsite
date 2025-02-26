@@ -141,8 +141,8 @@
 
 @media (max-width: 768px) {
     .homeContainer {
-        margin-top: 600px;
-        margin-bottom: 530px;
+        margin-top: 500px;
+        margin-bottom: 350px;
     }
 
     .general-info p {

@@ -29,11 +29,12 @@
     padding-left: 10%; /* Отстояние на целия списък навътре */
     margin: 10px 0; /* Отстояние между списъка и другите елементи */
     text-align: left; /* Ляво подравняване за параграфи и списъци */
+    color: black;
   }
   
   .privacyInfo li {
     margin-bottom: 8px; /* Разстояние между елементите на списъка */
-    color:white;
+    color: black;
   }
   
   @media (max-width: 600px) {

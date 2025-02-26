@@ -211,7 +211,7 @@ const OrderForm = () => {
                             <ul>
                                 {cartItems.map(item => (
                                     <li key={item.id} className="cart-item">
-                                        {item.name} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
+                                        {item.productname} - {item.quantity} бр. - {item.option || ''} {(parseFloat(item.discount_price.replace(/[^\d.-]/g, '')) * item.quantity).toFixed(2)} лв.
                                         <button className="remove-button" type="button" onClick={() => removeFromCart(item.id)}>
                                             Премахни
                                         </button>
@@ -220,7 +220,7 @@ const OrderForm = () => {
                             </ul>
 
                             <h3>Цена без доставка: {cartItems
-                                .reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.-]/g, '')) * item.quantity), 0)
+                                .reduce((total, item) => total + (parseFloat(item.discount_price.replace(/[^\d.-]/g, '')) * item.quantity), 0)
                                 .toFixed(2)} лв.
                             </h3>
                         </>
@@ -234,7 +234,7 @@ const OrderForm = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <p>
-                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение след 23.02.2025г.
+                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение от 1 до 3 работни дни.
                         </p>
                     </div>
                 </div>

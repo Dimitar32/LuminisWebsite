@@ -6,13 +6,13 @@ import 'swiper/swiper-bundle.css';
 import useEcontOffices from '../../hooks/useEcontOffices';  
 import useSaveOrder from "../../hooks/useSaveOrder";
 import './ProductDetails.css';
-import products from './ProductData';
+import useProductDetails from '../../hooks/UseProductsDetails';
 import { CartContext } from '../contexts/CartContext'; 
 
 const ProductDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const product = products.find(p => p.id === parseInt(id));
+    // const product = products.find(p => p.id === parseInt(id));
     const [quantity, setQuantity] = useState(1); 
     
     const [isAdded, setIsAdded] = useState(false);
@@ -27,13 +27,15 @@ const ProductDetails = () => {
 
     const { offices } = useEcontOffices();
 
+    const { product, loading, error } = useProductDetails(id);
+
     const toggleDescription = () => {
         setIsDescriptionOpen(!isDescriptionOpen);
     };
 
-    const handleOrderClick = () => {
-        setShowModal(true); 
-    };
+    // const handleOrderClick = () => {
+    //     setShowModal(true); 
+    // };
 
     const handleCloseModal = () => {
         setShowModal(false); 
@@ -47,10 +49,10 @@ const ProductDetails = () => {
         city: '',
         postalCode: '',
         country: '',
-        order: product.name,
+        order: '',
         quantity: 1,
         additionalInfo: '',
-        option: product.option
+        option: ''
     });
 
     const handleChange = (e) => {
@@ -126,6 +128,16 @@ const ProductDetails = () => {
         return <h2>Продуктът не е намерен</h2>;
     }
 
+    // Display a loading message while data is being fetched
+    if (loading) {
+        return <h2>Loading product details...</h2>;
+    }
+
+    // Display an error message if there was an issue fetching data
+    if (error) {
+        return <h2>Error: {error}</h2>;
+    }
+
     return (
         <section id="products" className="product-details-section">
             <Swiper
@@ -135,10 +147,10 @@ const ProductDetails = () => {
                 loop
                 className="swiper-container" 
             >
-                {product.imageUrl.map((image, index) => (
+                {product.images.map((image, index) => (
                     <SwiperSlide key={index} className="swiper-slide">
                         <img
-                            src={image}
+                            src={image.image_url}
                             alt={`Product ${index + 1}`}
                             className="product-image"
                         />
@@ -147,9 +159,9 @@ const ProductDetails = () => {
             </Swiper>
 
             <div className="product-details">
-            <h2>{product.name}</h2>
-                <p className="old-price">Стара Цена: {product.oldPrice}</p>
-                <p className="product-price">Цена: {product.price}</p>
+            <h2>{product.productname}</h2>
+                <p className="old-price">Стара Цена: {product.price}</p>
+                <p className="product-price">Цена: {product.discount_price}</p>
 
                 <label className='product-quantity-input-label'>
                     <input className="product-quantity-input"
@@ -161,6 +173,7 @@ const ProductDetails = () => {
                     />
                 </label>
                 
+                {/*
                 {product.id === 7 && (
                     <label className="product-options-dropdown-label">
                         <select 
@@ -181,10 +194,11 @@ const ProductDetails = () => {
                         </select>
                     </label>
                 )}
+                */}
 
                 <div className="product-buttons">
                     <button className="order-button" onClick={() => handleAddToCart(product, quantity, formData.option)}>Добави в количката</button>
-                    <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button>
+                    {/* <button className="order-button" onClick={handleOrderClick}>Бърза поръчка</button> */}
                 </div>
 
                 <div className="product-description">
@@ -220,7 +234,7 @@ const ProductDetails = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <p>
-                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение след 23.02.2025г.
+                            Благодарим за поръчката! Очаквайте да се свържем с Вас за потвърждение от 1 до 3 работни дни.
                         </p>
                     </div>
                 </div>
@@ -263,7 +277,7 @@ const ProductDetails = () => {
                                     />
                                 </label>
                                 <label>
-                                    Брой {product.name} :
+                                    Брой {product.productname} :
                                     <input
                                         type="number"
                                         name="quantity"

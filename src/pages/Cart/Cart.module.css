@@ -4,7 +4,7 @@
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #1B1F3B;
+    background-color: #b392ac;
     color: white;
     border: none;
     border-radius: 5px;
@@ -13,7 +13,7 @@
 }
 
 .cartToggleButton:hover {
-    background-color: white;
+    background-color: #9c7b98;
     color: #1B1F3B;
 }
 

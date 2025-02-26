@@ -43,7 +43,7 @@
 }
 
     .product-card:hover {
-        transform: rotate(+1deg) scale(1.05);
+        /* transform: rotate(+1deg) scale(1.05); */
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -78,7 +78,7 @@
 
 .new-price {
     font-size: 18px;
-    color: white;
+    color: black;
     font-weight: bold;
     margin-left: 0;
     margin-right: 0;
@@ -86,10 +86,11 @@
 }
 
 h3, p {
-    color:white;
+    color:black;
     margin: 5px;
     font-family: 'Montserrat';
 }
+
 
 
 .product-card {
@@ -114,7 +115,7 @@ h3, p {
 }
 
     .product-card-blur:hover {
-        transform: rotate(+1deg) scale(1.05);
+        /* transform: rotate(+1deg) scale(1.05); */
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -126,6 +127,7 @@ h3, p {
 
 .products-title {
     font-size: 30px;
+    color: black;
 }
 
 
