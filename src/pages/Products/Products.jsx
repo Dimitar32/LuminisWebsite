@@ -47,7 +47,7 @@ const Products = () => {
                         <img src={primaryImage} alt={product.name} className="product-image-blur" />
                             <h3>{product.productname}</h3>
                             <p className="product-card-blur-old-price">??.??лв.</p> 
-                            <p className="new-price">Очаквайте скоро!</p> 
+                            <p className="new-price">Изчерпано</p> 
                     </div>
                     </Link>
                 );
