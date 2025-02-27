@@ -16,10 +16,14 @@ const Products = () => {
         return <h2>Error: {error}</h2>;
     }
     
+    // Sort products by id in descending order
+    const sortedProducts = [...products].sort((a, b) => b.id - a.id);
+    const sortedBlurProducts = [...blurProducts].sort((a, b) => b.id - a.id);
+
     return (
         <section id="products" className={`products-section ${isHomePage ? 'no-margin' : ''}`}>
             <h2 className="products-title">Продукти</h2>
-            {products.map(product => {
+            {sortedProducts.map(product => {
                 const primaryImage = product.images.find(image => image.is_primary)?.image_url || '/images/placeholder.png';
                 return(
                     <Link to={`/product/${product.id}`} key={product.id} className="product-link">
@@ -38,7 +42,7 @@ const Products = () => {
                     </Link>
                 );
             })}
-            {blurProducts.map(product => {
+            {sortedBlurProducts.map(product => {
                 const primaryImage = product.images.find(image => image.is_primary)?.image_url || '/images/placeholder.png';
                 return(
 
