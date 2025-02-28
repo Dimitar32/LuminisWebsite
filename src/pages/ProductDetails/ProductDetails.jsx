@@ -160,8 +160,8 @@ const ProductDetails = () => {
 
             <div className="product-details">
             <h2>{product.productname}</h2>
-                <p className="old-price">Стара Цена: {product.price}</p>
-                <p className="product-price">Цена: {product.discount_price}</p>
+                <p className="old-price">Стара Цена: {product.price}лв.</p>
+                <p className="product-price">Цена: {product.discount_price}лв.</p>
 
                 <label className='product-quantity-input-label'>
                     <input className="product-quantity-input"
